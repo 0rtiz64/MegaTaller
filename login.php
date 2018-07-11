@@ -50,11 +50,14 @@
                             <form action="" method="post">
                                 <div class="form-group">
 
-                                    <input class="au-input au-input--full" type="text" placeholder="Usuario" id="userInput">
+                                    <input class="au-input au-input--full" type="text" placeholder="USUARIO" id="userInput">
+                                    <div id="usuarioAlert" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">USUARIO INVALIDO</div>
                                 </div>
                                 <div class="form-group">
 
-                                    <input class="au-input au-input--full" type="password" placeholder="Contraseña" id="passInput">
+                                    <input class="au-input au-input--full" type="password" placeholder="CONTRASEÑA" id="passInput">
+                                    <div id="passAlert" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">CONTRASEÑA INVALIDA</div>
+
                                 </div>
                                 <div class="login-checkbox collapse">
                                     <label>
@@ -64,7 +67,7 @@
                                         <a href="#">Forgotten Password?</a>
                                     </label>
                                 </div>
-                                <input type="button" class="au-btn au-btn--block au-btn--green m-b-20" value="Ingresar">
+                                <input type="button" class="au-btn au-btn--block au-btn--green m-b-20" value="Ingresar" onclick="confirmar()">
 
                             </form>
 
@@ -99,7 +102,7 @@
 
     <!-- Main JS-->
     <script src="js/main.js"></script>
-
+    <script src="Controllers/login.js"></script>
 </body>
 
 </html>
