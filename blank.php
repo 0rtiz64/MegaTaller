@@ -65,9 +65,9 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                     <ul class="list-unstyled navbar__list">
                         <?php
                         include '../funciones/menu.php';
-                        $permisos = $_SESSION['area'];
-                        $focusMenu = "M1";
-                        $focusSubMenu = "SM1.1";
+                        $permisos = $_SESSION[''];
+                        $focusMenu = "";
+                        $focusSubMenu = "";
                         menuSubmenu($permisos,$focusMenu,$focusSubMenu);
                         ?>
                     </ul>
@@ -101,42 +101,9 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                     </div>
                                 </div>
                                 <div class="header-button-item has-noti js-item-menu">
-                                    <i class="zmdi zmdi-notifications"></i>
-                                    <div class="notifi-dropdown js-dropdown">
-                                        <div class="notifi__title">
-                                            <p>You have 3 Notifications</p>
-                                        </div>
-                                        <div class="notifi__item">
-                                            <div class="bg-c1 img-cir img-40">
-                                                <i class="zmdi zmdi-email-open"></i>
-                                            </div>
-                                            <div class="content">
-                                                <p>You got a email notification</p>
-                                                <span class="date">April 12, 2018 06:50</span>
-                                            </div>
-                                        </div>
-                                        <div class="notifi__item">
-                                            <div class="bg-c2 img-cir img-40">
-                                                <i class="zmdi zmdi-account-box"></i>
-                                            </div>
-                                            <div class="content">
-                                                <p>Your account has been blocked</p>
-                                                <span class="date">April 12, 2018 06:50</span>
-                                            </div>
-                                        </div>
-                                        <div class="notifi__item">
-                                            <div class="bg-c3 img-cir img-40">
-                                                <i class="zmdi zmdi-file-text"></i>
-                                            </div>
-                                            <div class="content">
-                                                <p>You got a new file</p>
-                                                <span class="date">April 12, 2018 06:50</span>
-                                            </div>
-                                        </div>
-                                        <div class="notifi__footer">
-                                            <a href="#">All notifications</a>
-                                        </div>
-                                    </div>
+                                    <i class="zmdi zmdi-notifications" onclick="notificaciones();"></i>
+                                    <input type="hidden" value="<?php  echo $_SESSION['idUsuario']; ?>" id="idUsuario">
+                                  <div id="mostrarNotificaciones"></div>
                                 </div>
                                 <div class="header-button-item mr-0 js-sidebar-btn">
                                     <i class="zmdi zmdi-menu"></i>
@@ -438,6 +405,25 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
             }).done(function(resp){
                 location.href = '/megataller/index.php';
             });
+        }
+        
+        
+        function notificaciones() {
+            var idUsuario = $('#idUsuario').val();
+var url ='Model/notificaciones.php';
+            $.ajax({
+                url:url,
+                method :"POST",
+                data:{idUsuario:idUsuario},
+                success: function (datos) {
+        $('#mostrarNotificaciones').html(datos);
+                    return false;
+
+
+                }
+            });
+
+            return false;
         }
     </script>
     <script src="../js/main.js"></script>

@@ -37,6 +37,7 @@
                     $nombre = $Datos["nombre"];
                     $area 	= $Datos["accesos"];
                     $nombreFoto =$Datos["usuario"];
+                    $idUsuario =$Datos["idUsuario"];
                     //INICIO BUSCAR FOTO
                     $rutaImg1="../images/usuarios/";
                     $finRuta=".jpg";
@@ -54,6 +55,7 @@
                     $_SESSION['num_acceso']=$num_acceso;
                     $_SESSION['nombre'] = $nombre;
                     $_SESSION['area'] = $area;
+                    $_SESSION['idUsuario'] = $idUsuario;
                     $_SESSION['$rutaImgagenPerfil'] = $rutaImgagenPerfil;
                     $ubicacion = Ubicar($area);
                     echo $ubicacion;
