@@ -13,7 +13,7 @@ function desencriptar($cadena){
     return $decrypted;  //Devuelve el string desencriptado
 }
 /*
-$clave = encriptar('94460235');
+$clave = encriptar('0rtiz64');
 echo $clave;
 echo "<br>";
 $valor = desencriptar($clave);
