@@ -61,13 +61,13 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                     <h4 class="name"><?php  echo $_SESSION['nombre']; ?></h4>
                     <a href="javascript: void(0)" onclick='cerrar();'><i class="fa fa-power-off"></i> Cerrar Sesion</a>
                 </div>
-                <nav class="navbar-sidebar2">
+                <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <?php
                         include '../funciones/menu.php';
-                        $permisos = $_SESSION[''];
-                        $focusMenu = "";
-                        $focusSubMenu = "";
+                        $permisos = $_SESSION['area'];
+                        $focusMenu = "M2";
+                        $focusSubMenu = "SM2.1";
                         menuSubmenu($permisos,$focusMenu,$focusSubMenu);
                         ?>
                     </ul>
@@ -89,23 +89,24 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                 </a>
                             </div>
                             <div class="header-button2">
-                                <div class="header-button-item js-item-menu">
-                                    <i class="zmdi zmdi-search"></i>
-                                    <div class="search-dropdown js-dropdown">
-                                        <form action="">
-                                            <input class="au-input au-input--full au-input--h65" type="text" placeholder="Search for datas &amp; reports..." />
-                                            <span class="search-dropdown__icon">
-                                                <i class="zmdi zmdi-search"></i>
-                                            </span>
-                                        </form>
+                                <div class=header-wrap" style="margin-right: 5%">
+                                    <div class="form-header">
+                                        <input style="text-transform: uppercase" class="au-input au-input--xl" type="text" placeholder="Busca el Historial de un Equipo" id="inputBuscarHistorial" />
+                                        <button class="btn btn-info" type="button" onclick="historialEquipo();">
+                                            <i class="zmdi zmdi-search"></i>
+                                        </button>
                                     </div>
                                 </div>
+
                                 <div class="header-button-item has-noti js-item-menu">
                                     <i class="zmdi zmdi-notifications" onclick="notificaciones();"></i>
                                     <input type="hidden" value="<?php  echo $_SESSION['idUsuario']; ?>" id="idUsuario">
-                                  <div id="mostrarNotificaciones"></div>
+                                    <div class="notifi-dropdown js-dropdown">
+                                        <div id="mostrarNotificaciones"></div>
+                                    </div>
                                 </div>
-                                <div class="header-button-item mr-0 js-sidebar-btn">
+
+                                <div class="header-button-item mr-0 js-sidebar-btn collapse">
                                     <i class="zmdi zmdi-menu"></i>
                                 </div>
                                 <div class="setting-menu js-right-sidebar d-none d-lg-block">
@@ -406,17 +407,18 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                 location.href = '/megataller/index.php';
             });
         }
-        
-        
+
+
         function notificaciones() {
             var idUsuario = $('#idUsuario').val();
-var url ='Model/notificaciones.php';
+            var url ='../Model/notificaciones.php';
             $.ajax({
                 url:url,
                 method :"POST",
                 data:{idUsuario:idUsuario},
                 success: function (datos) {
-        $('#mostrarNotificaciones').html(datos);
+                    $('#mostrarNotificaciones').html(datos);
+
                     return false;
 
 
@@ -424,6 +426,13 @@ var url ='Model/notificaciones.php';
             });
 
             return false;
+        }
+
+
+        function historialEquipo() {
+            var serie1= $('#inputBuscarHistorial').val();
+            var serie =serie1.toUpperCase();
+            alert("RECUERDA AGREGAR FUNCION BUSCAR HISTORIAL EN TODAS LAS VIEWS");
         }
     </script>
     <script src="../js/main.js"></script>

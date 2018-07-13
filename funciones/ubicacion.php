@@ -50,11 +50,16 @@
         }
         switch ($miarray[0]) {
             case 'M1':
+                $direccion = "Views/index.php";
+                break;
+
+
+            case 'M2':
                 # code...
                 switch ($miarraySubmenu[0]) {
-                    case 'SM1.1':
+                    case 'SM2.1':
                         # code...
-                        $direccion = "Views/index.php";
+                        $direccion = "Views/ordenes.php";
                         break;
                 }
                 break;

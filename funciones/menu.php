@@ -68,45 +68,68 @@
                  case 'M1':
 
                      if($focusMenu == "M1"){
-                         $accesoMenus .=' <li class="active has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>INICIO
-                                <span class="arrow">
-                                    <i class="fas fa-angle-down"></i>
-                                </span>
-                            </a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">';
+                         $accesoMenus .='  <li class="active">
+                            <a href="index.php">
+                                <i class="fas fa-chart-bar"></i>INICIO</a>
+                        </li>';
                      }else{
                          $accesoMenus .=' <li>
+                            <a href="index.php">
+                                <i class="fas fa-chart-bar"></i>INICIO</a>
+                        </li>';
+                     }
+
+                     break;
+                 case 'M2':
+
+                     if($focusMenu == "M2"){
+                         $accesoMenus .='   <li class="active has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>INICIO
-                                <span class="arrow">
-                                    <i class="fas fa-angle-down"></i>
-                                </span>
-                            </a>
+                                <i class="zmdi zmdi-ticket-star"></i>TICKETS</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">';
+                     }else{
+                         $accesoMenus .=' <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="zmdi zmdi-ticket-star"></i>TICKETS</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">';
                      }
 
                      for ($z=0; $z < count($miarraySubmenu); $z++) {
                          # code...
                          switch ($miarraySubmenu[$z]) {
-                             case 'SM1.1':
+                             case 'SM2.1':
                                  # code...
-                                 if($focusSubMenu == "SM1.1"){
+                                 if($focusSubMenu == "SM2.1"){
                                      $accesoMenus .='  <li class="active">
-                                    <a href="Views/index.php"><i class="fas fa-tachometer-alt"></i>Dashboard 1</a></li>';
+                                    <a href="ordenes.php">Dashboard 1</a>
+                                </li>';
                                  }else{
-                                     $accesoMenus .='  <li>
-                                    <a href="Views/index.php"><i class="fas fa-tachometer-alt"></i>Dashboard 1</a></li>';
+                                     $accesoMenus .='   <li>
+                                    <a href="ordenes.php">Dashboard 1</a>
+                                </li>';
                                  }
 
                                  break;
 
 
-                             case 'SM1.0':
+                             case 'SM2.2':
                                  # code...
-                                 $accesoMenus .="</ul>
-                                            </li>";
+                                 if($focusSubMenu == "SM2.2"){
+                                     $accesoMenus .='   <li class="">
+                                    <a href="ordenes.php">Dashboard 2</a>
+                                </li>';
+                                 }else{
+                                     $accesoMenus .='   <li>
+                                    <a href="ordenes.php">Dashboard 2</a>
+                                </li>';
+                                 }
+
+                                 break;
+
+                             case 'SM2.0':
+                                 # code...
+                                 $accesoMenus .="<ul/> 
+                                                </li>";
                                  break;
                              default:
                                  # code...
@@ -114,9 +137,6 @@
                          }
                      }
                      break;
-
-
-
              }
 
          }

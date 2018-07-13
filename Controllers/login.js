@@ -24,7 +24,7 @@ $(document).ready(function(){
                 type:'POST',
                 data:'email='+email+'&password='+password+"&boton=ingresar"
             }).done(function(resp){
-                if(resp=='0'){
+                if(resp==0){
                     $('#passInput').val("");
                     $('#passAlert').slideDown(500);
                     $('#passInput').focus();

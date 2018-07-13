@@ -23,22 +23,32 @@ WHERE notificaciones.idRecibe = $idUsuario and notificaciones.estado=1");
     $datosCantidadNotificaciones = mysqli_fetch_array($QuerycontarNotificaciones);
     while ($datosNotificaciones = mysqli_fetch_array($Querynotificaciones,MYSQLI_ASSOC)){
         $notificaciones = '
-          <div class="notifi-dropdown js-dropdown">
                                         <div class="notifi__title">
                                             <p>Tienes '.$datosCantidadNotificaciones["cantidad"].' notificaciones pendientes</p>
                                         </div>
                                         <div class="notifi__item">
                                             <div class="bg-c1 img-cir img-40">
-                                                <i class="zmdi zmdi-email-open"></i>
+                                                <i class="zmdi zmdi-notifications-active"></i>
                                             </div>
                                             <div class="content">
-                                                <p>'.$datosNotificaciones["nombre"].'</p>
-                                                <span class="date">'.$datosNotificaciones["mensaje"].'</span>
+                                                <p>De: '.$datosNotificaciones["nombre"].'</p>
+                                             <strong><span class="date">'.$datosNotificaciones["mensaje"].'</span></strong>
                                             </div>
                                         </div>
-                                    </div>
         ';
     }
-}else{
 
+    echo $notificaciones;
+}else{
+    $QuerycontarNotificaciones= mysqli_query($enlace,"SELECT COUNT(*) as cantidad  from notificaciones 
+WHERE notificaciones.idRecibe = $idUsuario and notificaciones.estado=1");
+    $datosCantidadNotificaciones = mysqli_fetch_array($QuerycontarNotificaciones);
+
+    $notificaciones = '
+                                        <div class="notifi__title">
+                                            <p>Tienes '.$datosCantidadNotificaciones["cantidad"].' notificaciones pendientes</p>
+                                        </div>
+                                       
+        ';
+    echo $notificaciones;
 }
