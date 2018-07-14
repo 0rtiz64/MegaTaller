@@ -18,7 +18,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
         <meta name="keywords" content="au theme template">
 
         <!-- Title Page-->
-        <title>Dashboard 2</title>
+        <title>ORDENES DE SERVICIO</title>
 
         <!-- Fontfaces CSS-->
         <link href="../css/font-face.css" rel="stylesheet" media="all">

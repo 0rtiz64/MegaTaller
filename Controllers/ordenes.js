@@ -44,6 +44,8 @@ function guardarClienteNuevo() {
     var idVendedor1 = document.getElementById('nuevoClienteVendedor').value;
     var direccion1 = $('#direccionNuevoCliente').val();
 
+    var cliente =cliente1.toUpperCase();
+    var direccion =direccion1.toUpperCase();
 
 }
 //FIN GUARDAR //
