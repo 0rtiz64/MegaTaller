@@ -47,5 +47,7 @@ function guardarClienteNuevo() {
     var cliente =cliente1.toUpperCase();
     var direccion =direccion1.toUpperCase();
 
+    //AGREGAR ALERTIFY AL PROYECTO
+
 }
 //FIN GUARDAR //
