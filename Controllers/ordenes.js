@@ -44,9 +44,10 @@ function guardarClienteNuevo() {
     var idVendedor1 = document.getElementById('nuevoClienteVendedor').value;
     var direccion1 = $('#direccionNuevoCliente').val();
 
-    var cliente =cliente1.toUpperCase();
-    var direccion =direccion1.toUpperCase();
+    var cliente =cliente1.trim().toUpperCase();
+    var direccion =direccion1.trim().toUpperCase();
 
+    alert(cliente.length);
     //AGREGAR ALERTIFY AL PROYECTO
 
 }
