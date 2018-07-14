@@ -106,7 +106,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                     </div>
                                 </div>
 
-                                <div class="header-button-item mr-0 js-sidebar-btn">
+                                <div class="header-button-item mr-0 js-sidebar-btn collapse">
                                     <i class="zmdi zmdi-menu"></i>
                                 </div>
                                 <div class="setting-menu js-right-sidebar d-none d-lg-block">

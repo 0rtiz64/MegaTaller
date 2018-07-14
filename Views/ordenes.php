@@ -312,57 +312,147 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="row">
-                            <!--CONTENIDO 1 AQUI-->
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- END BREADCRUMB-->
-
-            <!-- STATISTIC-->
-            <section class="statistic">
-                <div class="section__content section__content--p30">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <!--CONTENIDO 2 AQUI-->
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- END STATISTIC-->
-
-            <section>
-                <div class="section__content section__content--p30">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <!--CONTENIDO 3 AQUI-->
-
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section>
-                <div class="section__content section__content--p30">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <!--CONTENIDO 4 AQUI-->
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!--section>
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="copyright">
-                                <p>Copyright © 2018 Megacenter S.A. All rights reserved. <a href="">David Ortiz</a>.</p>
+                            <div class="col-md-12">
+                                <div class="overview-wrap">
+                                    <h2 class="title-1">ORDEN DE SERVICIO</h2>
+                                    <button class="au-btn au-btn-icon au-btn--blue" onclick="abrirModal()">
+                                        <i class="zmdi zmdi-plus"></i>Nueva Orden</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section-->
+            </section>
+
+
+
+            <!-- modal large -->
+            <div class="modal fade" id="largeModalOrdenesServicio" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="largeModalLabel">NUEVA ORDEN DE SERVICIO</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                           <div class="col-md-12">
+                               <form class="form-horizontal">
+                                   <div class="row form-group">
+
+                                   <div class="form-group col-md-4">
+                                       <div class="input-group">
+                                           <div class="input-group-addon  btn btn-primary">
+                                               <i class="fa fa-plus-circle"></i>
+                                           </div>
+                                           <select  id="clienteNuevaOrden" class="form-control">
+                                               <option value="">CLIENTE</option>
+                                           </select>
+                                       </div>
+                                   </div>
+
+                                    <div class="form-group col-md-4">
+                                        <input type="text" class="form-control" placeholder="NOMBRE CONTACTO" style="text-transform: uppercase">
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <input type="number" class="form-control" placeholder="TELEFONO CONTACTO" min="0">
+                                    </div>
+                                </div>
+
+                                   <div class="row form-group">
+
+                                       <div class="form-group col-md-4">
+                                           <div class="input-group">
+                                               <div class="input-group-addon  btn btn-primary">
+                                                   <i class="fa fa-plus-circle"></i>
+                                               </div>
+                                               <select  id="marcaNuevaOrden" class="form-control">
+                                                   <option value="">MARCA</option>
+                                               </select>
+                                           </div>
+                                       </div>
+
+                                       <div class="form-group col-md-4">
+                                           <div class="input-group">
+                                               <div class="input-group-addon  btn btn-primary">
+                                                   <i class="fa fa-plus-circle"></i>
+                                               </div>
+                                               <select  id="modeloNuevaOrden" class="form-control">
+                                                   <option value="">MODELO</option>
+                                               </select>
+                                           </div>
+                                       </div>
+
+                                       <div class="form-group col-md-4">
+                                           <input type="text" class="form-control" placeholder="SERIE" style="text-transform: uppercase">
+                                       </div>
+                                   </div>
+
+                                   <div class="row form-group">
+
+                                       <div class="form-group col-md-4">
+                                           <input type="text" class="form-control" placeholder="FALLA REPORTADA" style="text-transform: uppercase">
+                                       </div>
+
+                                       <div class="form-group col-md-4">
+                                           <input type="text" class="form-control" placeholder="NUMERO DE PARTE (OPCIONAL)" style="text-transform: uppercase">
+                                       </div>
+
+                                       <div class="form-group col-md-4">
+                                           <input type="text" class="form-control" placeholder="INCLUYE">
+                                       </div>
+                                   </div>
+
+                                   <div class="col-md-12 form-group" align="center">
+                                       <input type="button" class="btn btn-primary" value="AGREGAR EQUIPO">
+                                   </div>
+
+                                   <div class="col-md-12 form-group">
+                                       <!-- DATA TABLE-->
+                                       <div class="table-responsive m-b-40">
+                                           <table class="table table-borderless table-data3">
+                                               <thead>
+                                               <tr align="center">
+                                                   <td style="color: white;font-size: small">MARCA</td>
+                                                   <td style="color: white;font-size: small">MODELO</td>
+                                                   <td style="color: white;font-size: small">SERIE</td>
+                                                   <td style="color: white;font-size: small">FALLA</td>
+                                                   <td style="color: white;font-size: small">INCLUYE</td>
+
+                                               </tr>
+                                               </thead>
+                                               <tbody>
+                                               <tr align="center">
+                                                   <td>ZEBRA</td>
+                                                   <td>ZQ320</td>
+                                                   <td>XXXJ14518377</td>
+                                                   <td class="denied">NO CARGA</td>
+                                                   <td>FUENTE Y CARGADOR</td>
+                                               </tr>
+                                               </tbody>
+                                           </table>
+                                       </div>
+                                       <!-- END DATA TABLE-->
+                                   </div>
+
+                               </form>
+                           </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary">Confirm</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end modal large -->
+
+
+
+
+
             <!-- END PAGE CONTAINER-->
         </div>
 
@@ -436,6 +526,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
         }
     </script>
     <script src="../js/main.js"></script>
+    <script src="../Controllers/ordenes.js"></script>
 
     </body>
 

@@ -101,11 +101,11 @@
                                  # code...
                                  if($focusSubMenu == "SM2.1"){
                                      $accesoMenus .='  <li class="active">
-                                    <a href="ordenes.php">Dashboard 1</a>
+                                    <a href="ordenes.php">ORDEN DE SERVICIO</a>
                                 </li>';
                                  }else{
                                      $accesoMenus .='   <li>
-                                    <a href="ordenes.php">Dashboard 1</a>
+                                    <a href="ordenes.php">ORDEN DE SERVICIO</a>
                                 </li>';
                                  }
 
