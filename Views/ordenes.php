@@ -343,7 +343,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
 
                                    <div class="form-group col-md-4">
                                        <div class="input-group">
-                                           <div class="input-group-addon  btn btn-primary">
+                                           <div class="input-group-addon  btn btn-primary" onclick="modalNuevoCliente()">
                                                <i class="fa fa-plus-circle"></i>
                                            </div>
                                            <select  id="clienteNuevaOrden" class="form-control">
@@ -365,7 +365,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
 
                                        <div class="form-group col-md-4">
                                            <div class="input-group">
-                                               <div class="input-group-addon  btn btn-primary">
+                                               <div class="input-group-addon  btn btn-primary" onclick="modalNuevaMarca()">
                                                    <i class="fa fa-plus-circle"></i>
                                                </div>
                                                <select  id="marcaNuevaOrden" class="form-control">
@@ -376,7 +376,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
 
                                        <div class="form-group col-md-4">
                                            <div class="input-group">
-                                               <div class="input-group-addon  btn btn-primary">
+                                               <div class="input-group-addon  btn btn-primary" onclick="modalNuevoModelo()">
                                                    <i class="fa fa-plus-circle"></i>
                                                </div>
                                                <select  id="modeloNuevaOrden" class="form-control">
@@ -406,7 +406,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                    </div>
 
                                    <div class="col-md-12 form-group" align="center">
-                                       <input type="button" class="btn btn-primary" value="AGREGAR EQUIPO">
+                                       <input type="button" class="btn btn-outline-info" value="AGREGAR EQUIPO">
                                    </div>
 
                                    <div class="col-md-12 form-group">
@@ -441,15 +441,109 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                            </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-primary">Confirm</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
+                            <button type="button" class="btn btn-primary">CONFIRMAR ORDEN</button>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- end modal large -->
 
+            <!-- NUEVO  CLIENTE-->
+            <div  class="modal fade" id="modalNuevoCliente" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true"
+                 data-backdrop="static">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-primary">
+                            <h5 class="modal-title" id="staticModalLabel" style="color: white">NUEVO CLIENTE</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body" >
+                           <div class="col-md-12">
+                               <div class="form-group">
+                                   <input type="text" class="form-control" placeholder="NOMBRE CLIENTE" id="nombreNuevoCliente" style="text-transform: uppercase">
+                               </div>
+                               <div class="form-group">
+                                   <select  id="nuevoClienteVendedor" class="form-control">
+                                       <option value="">VENDEDOR</option>
+                                       <?php
+                                       include '../funciones/enlace.php';
+                                       $queryVendedores= mysqli_query($enlace,"select * from usuarios where tipoUsuario = 3 and estado =1");
+                                        while($datosVendedores = mysqli_fetch_array($queryVendedores,MYSQLI_ASSOC)){
+                                            echo' <option value="'.$datosVendedores["idUsuario"].'">'.$datosVendedores["nombre"].'</option>';
+                                        }
+                                       ?>
+                                   </select>
+                               </div>
+                              <div class="form-group">
+                                  <input type="text" class="form-control" placeholder="DIRECCION" id="direccionNuevoCliente" style="text-transform: uppercase">
+                              </div>
+                           </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
+                            <button type="button" class="btn btn-primary" onclick="guardarClienteNuevo()">CONFIRMAR</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- FIN NUEVO CLIENTE -->
 
+            <!-- NUEVA MARCA-->
+            <div  class="modal fade" id="modalNuevaMarca" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true"
+                  data-backdrop="static">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-primary">
+                            <h5 class="modal-title" id="staticModalLabel" style="color: white">NUEVA MARCA</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body" >
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="NOMBRE MARCA">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
+                            <button type="button" class="btn btn-primary">CONFIRMAR</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- FIN NUEVA MARCA-->
+
+            <!-- NUEVO MODELO-->
+            <div  class="modal fade" id="modalNuevoModelo" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true"
+                  data-backdrop="static">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-primary">
+                            <h5 class="modal-title" id="staticModalLabel" style="color: white">NUEVO MODELO</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body" >
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="NOMBRE MODELO">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
+                            <button type="button" class="btn btn-primary">CONFIRMAR</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- FIN NUEVO MODELO-->
 
 
 
