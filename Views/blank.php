@@ -42,6 +42,11 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
         <!-- Main CSS-->
         <link href="../css/theme.css" rel="stylesheet" media="all">
 
+
+        <!--ALERTIFY INICIO-->
+        <link rel="stylesheet" href="../vendor/alertify/css/alertify.css">
+        <link rel="stylesheet" href="../vendor/alertify/css/themes/bootstrap.css">
+        <!--ALERTIFY FIN-->
     </head>
 
     <body class="animsition">
@@ -392,7 +397,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
     <script src="../vendor/vector-map/jquery.vmap.min.js"></script>
     <script src="../vendor/vector-map/jquery.vmap.sampledata.js"></script>
     <script src="../vendor/vector-map/jquery.vmap.world.js"></script>
-
+    <script src="../vendor/alertify/alertify.js"></script>
     <!-- Main JS-->
     <script>
 

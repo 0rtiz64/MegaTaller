@@ -42,6 +42,10 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
         <!-- Main CSS-->
         <link href="../css/theme.css" rel="stylesheet" media="all">
 
+        <!--ALERTIFY INICIO-->
+        <link rel="stylesheet" href="../vendor/alertify/css/alertify.css">
+        <link rel="stylesheet" href="../vendor/alertify/css/themes/bootstrap.css">
+        <!--ALERTIFY FIN-->
     </head>
 
     <body class="animsition">
@@ -341,14 +345,21 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                <form class="form-horizontal">
                                    <div class="row form-group">
 
-                                   <div class="form-group col-md-4">
+                                   <div class="form-group col-md-4" id="divClientes">
                                        <div class="input-group">
                                            <div class="input-group-addon  btn btn-primary" onclick="modalNuevoCliente()">
                                                <i class="fa fa-plus-circle"></i>
                                            </div>
-                                           <select  id="clienteNuevaOrden" class="form-control">
-                                               <option value="">CLIENTE</option>
-                                           </select>
+                                                <select  id="clienteNuevaOrden" class="form-control">
+                                                    <option value="">CLIENTE</option>
+                                                    <?php
+                                                    include '../funciones/enlace.php';
+                                                    $queryClientes= mysqli_query($enlace,"SELECT * from clientes where estado =1 GROUP BY nombre ASC");
+                                                    while($datosClientes = mysqli_fetch_array($queryClientes,MYSQLI_ASSOC)){
+                                                        echo '<option value="'.$datosClientes["idCliente"].'">'.$datosClientes["nombre"].'</option>';
+                                                    }
+                                                    ?>
+                                                </select>
                                        </div>
                                    </div>
 
@@ -577,6 +588,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
     <script src="../vendor/vector-map/jquery.vmap.sampledata.js"></script>
     <script src="../vendor/vector-map/jquery.vmap.world.js"></script>
 
+    <script src="../vendor/alertify/alertify.js"></script>
     <!-- Main JS-->
     <script>
 
