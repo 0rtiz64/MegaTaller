@@ -374,13 +374,21 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
 
                                    <div class="row form-group">
 
-                                       <div class="form-group col-md-4">
+                                       <div class="form-group col-md-4" id="divNuevaMarca">
                                            <div class="input-group">
                                                <div class="input-group-addon  btn btn-primary" onclick="modalNuevaMarca()">
                                                    <i class="fa fa-plus-circle"></i>
                                                </div>
                                                <select  id="marcaNuevaOrden" class="form-control">
                                                    <option value="">MARCA</option>
+                                                   <?php
+                                                   include '../funciones/enlace.php';
+                                                   $queryMarcas = mysqli_query($enlace,"SELECT * from marcas WHERE estado = 1 GROUP BY descripcion ASC");
+
+                                                   while($datosMarcas = mysqli_fetch_array($queryMarcas,MYSQLI_ASSOC)){
+                                                       echo'<option value="'.$datosMarcas["idMarca"].'">'.$datosMarcas["descripcion"].'</option>';
+                                                   }
+                                                   ?>
                                                </select>
                                            </div>
                                        </div>
@@ -516,13 +524,13 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                         <div class="modal-body" >
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="NOMBRE MARCA">
+                                    <input type="text" class="form-control" placeholder="NOMBRE MARCA" id="inputMarcaNueva" style="text-transform: uppercase">
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
-                            <button type="button" class="btn btn-primary">CONFIRMAR</button>
+                            <button type="button" class="btn btn-primary" onclick="guardarMarcaNueva()">CONFIRMAR</button>
                         </div>
                     </div>
                 </div>

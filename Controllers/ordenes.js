@@ -88,8 +88,9 @@ function guardarClienteNuevo() {
                 $('#nombreNuevoCliente').val("");
                 $('#nuevoClienteVendedor').val("");
                 $('#direccionNuevoCliente').val("");
-                alertify.success("ACEPTADO");
+                alertify.success("CLIENTE GUARDADO");
                 $('#divClientes').html(respuesta);
+                $('#modalNuevoCliente').modal('hide');
             }
 
             //SUCCESS
@@ -102,6 +103,56 @@ function guardarClienteNuevo() {
 
    return false;
 }
+
+
+//INICIO GUARDAR MARCA
+function guardarMarcaNueva(){
+    var marca1 = $('#inputMarcaNueva').val();
+
+    var marca =marca1.toUpperCase();
+
+
+    var url = '../Model/ordenesGuardarMarca.php';
+
+    if(marca.trim().length ==""){
+        $('#inputMarcaNueva').addClass('is-invalid');
+        alertify.error("MARCA VACIO");
+        return false;
+    }else {
+        $('#inputMarcaNueva').removeClass('is-invalid');
+        $('#inputMarcaNueva').addClass('is-valid');
+    }
+
+
+    $.ajax({
+        type:'POST',
+        url:url,
+        data:{
+            phpMarca: marca
+        },
+        success: function(respuesta){
+
+            if(respuesta == 0){
+                alertify.error("MARCA DUPLICADA");
+                $('#inputMarcaNueva').val("");
+            }else{
+                $('#inputMarcaNueva').val("");
+                alertify.success("MARCA GUARDADA");
+                $('#divNuevaMarca').html(respuesta);
+                $('#modalNuevaMarca').modal('hide');
+            }
+
+            //SUCCESS
+
+            return false;
+
+
+        }
+    });
+
+    return false;
+}
+//FIN GUARDAR MARCA
 
 //FIN GUARDAR CLIENTE//
 //FIN GUARDAR //
