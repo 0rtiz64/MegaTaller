@@ -10,7 +10,7 @@ include '../funciones/enlace.php';
 
 $marca = $_POST['phpMarca'];
 
-$fechaentrada = date('Y-m-d  h:i:s');
+
 
 
 $queryConfirmar = mysqli_num_rows(mysqli_query($enlace,"SELECT * from marcas where descripcion = '".$marca."'  "));
@@ -20,7 +20,7 @@ if($queryConfirmar>0){
 }else{
     $queryGuardar = mysqli_query($enlace,"insert into marcas(descripcion,estado) values 
 	('".$marca."',1)");
-    $queryConsultarClientes = mysqli_query($enlace,"SELECT * from clientes WHERE estado = 1 GROUP BY nombre ASC");
+
 
     echo'<div class="input-group">';
     echo'<div class="input-group-addon  btn btn-primary" onclick="modalNuevaMarca()">';

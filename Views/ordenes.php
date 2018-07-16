@@ -393,13 +393,21 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                            </div>
                                        </div>
 
-                                       <div class="form-group col-md-4">
+                                       <div class="form-group col-md-4" id="divNuevoModelos">
                                            <div class="input-group">
                                                <div class="input-group-addon  btn btn-primary" onclick="modalNuevoModelo()">
                                                    <i class="fa fa-plus-circle"></i>
                                                </div>
                                                <select  id="modeloNuevaOrden" class="form-control">
                                                    <option value="">MODELO</option>
+                                                   <?php
+                                                   include '../funciones/enlace.php';
+                                                   $queryModelos = mysqli_query($enlace,"SELECT * from modelos WHERE estado = 1 GROUP BY descripcion ASC");
+
+                                                   while($datosModelos = mysqli_fetch_array($queryModelos,MYSQLI_ASSOC)){
+                                                       echo'<option value="'.$datosModelos["idModelo"].'">'.$datosModelos["descripcion"].'</option>';
+                                                   }
+                                                   ?>
                                                </select>
                                            </div>
                                        </div>
@@ -551,13 +559,13 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                         <div class="modal-body" >
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="NOMBRE MODELO">
+                                    <input type="text" class="form-control" placeholder="NOMBRE MODELO" style="text-transform: uppercase" id="inputModeloNuevo">
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
-                            <button type="button" class="btn btn-primary">CONFIRMAR</button>
+                            <button type="button" class="btn btn-primary" onclick="guardarModeloNueva()">CONFIRMAR</button>
                         </div>
                     </div>
                 </div>

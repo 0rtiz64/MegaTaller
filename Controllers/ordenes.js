@@ -103,7 +103,7 @@ function guardarClienteNuevo() {
 
    return false;
 }
-
+// FIN GUARDAR CLIENTE
 
 //INICIO GUARDAR MARCA
 function guardarMarcaNueva(){
@@ -154,7 +154,56 @@ function guardarMarcaNueva(){
 }
 //FIN GUARDAR MARCA
 
-//FIN GUARDAR CLIENTE//
+
+//INICIO GUARDAR MODELO
+function guardarModeloNueva(){
+    var modelo1 = $('#inputModeloNuevo').val();
+
+    var modelo =modelo1.toUpperCase();
+
+
+    var url = '../Model/ordenesGuardarModelo.php';
+
+    if(modelo.trim().length ==""){
+        $('#inputModeloNuevo').addClass('is-invalid');
+        alertify.error("MODELO VACIO");
+        return false;
+    }else {
+        $('#inputModeloNuevo').removeClass('is-invalid');
+        $('#inputModeloNuevo').addClass('is-valid');
+    }
+
+
+    $.ajax({
+        type:'POST',
+        url:url,
+        data:{
+            phpModelo: modelo
+        },
+        success: function(respuesta){
+
+            if(respuesta == 0){
+                alertify.error("MODELO DUPLICADO");
+                $('#inputModeloNuevo').val("");
+            }else{
+                $('#inputModeloNuevo').val("");
+                alertify.success("MODELO GUARDADO");
+                $('#divNuevoModelos').html(respuesta);
+                $('#modalNuevoModelo').modal('hide');
+            }
+
+            //SUCCESS
+
+            return false;
+
+
+        }
+    });
+
+    return false;
+}
+//FIN GUARDAR MODELO
+
 //FIN GUARDAR //
 
 
