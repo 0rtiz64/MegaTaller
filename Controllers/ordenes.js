@@ -207,4 +207,99 @@ function guardarModeloNueva(){
 //FIN GUARDAR //
 
 
+//INICIO AGREGAR EQUPO A ORDEN
+var equiposEnOrden = [];
+
+function agregarEquipo() {
+    var marca = document.getElementById('marcaNuevaOrden').value;
+    var modelo = document.getElementById('modeloNuevaOrden').value;
+    var serie1  = $('#inputSerieEquipo').val();
+    var falla1  = $('#inputFallaEquipo').val();
+    var numeroParte1  = $('#inputNumeroParte').val();
+    var incluye1  = $('#inputIncluye').val();
+
+
+    var  serie =serie1.trim().toUpperCase();
+    var  falla =falla1.trim().toUpperCase();
+    var  numeroParte =numeroParte1.trim().toUpperCase();
+    var  incluye =incluye1.trim().toUpperCase();
+
+var url ='../Model/ordenesAgregarEquipo.php';
+
+    if(marca.trim().length ==""){
+        $('#marcaNuevaOrden').addClass('is-invalid');
+        alertify.error("MARCA VACIA");
+        return false;
+    }else{
+        $('#marcaNuevaOrden').removeClass('is-invalid');
+        $('#marcaNuevaOrden').addClass('is-valid');
+        if(modelo.trim().length==""){
+            $('#modeloNuevaOrden').addClass('is-invalid');
+            alertify.error("MODELO VACIO");
+            return false;
+        }else{
+            $('#modeloNuevaOrden').removeClass('is-invalid');
+            $('#modeloNuevaOrden').addClass('is-valid');
+            if(serie.trim().length ==""){
+                $('#inputSerieEquipo').addClass('is-invalid');
+                alertify.error("SERIE VACIA");
+                return false;
+            }else{
+                $('#inputSerieEquipo').removeClass('is-invalid');
+                $('#inputSerieEquipo').addClass('is-valid');
+                if(falla.trim().length ==""){
+                    $('#inputFallaEquipo').addClass('is-invalid');
+                    alertify.error("FALLA VACIA");
+                    return false;
+                }else{
+                    $('#inputFallaEquipo').removeClass('is-invalid');
+                    $('#inputFallaEquipo').addClass('is-valid');
+                }// FIN FALLA
+            }//FIN SERIE
+        }// FIN MODELO
+    }//FIN MARCA
+
+
+    if (equiposEnOrden.includes(serie)== true){
+        alertify.error("EQUIPO DUPLICADO");
+        return false;
+    }// FIN ESTA EN ARRAY
+    equiposEnOrden.push(serie);
+
+    $.ajax({
+        type:'POST',
+        url:url,
+        data:{
+            phpMarca: marca,
+            phpModelo: modelo,
+            phpSerie: serie,
+            phpFalla: falla,
+            phpPn: numeroParte,
+            phpIncluye: incluye
+        },
+        success: function(respuesta){
+
+            add(respuesta);
+
+            return false;
+
+
+        }
+    });
+
+}
+
+var cont = 0;
+function add(fila) {
+
+    cont++;
+    $('#tablaEquiposEnOrden').append(fila);
+    $('#marcaNuevaOrden').val("");
+    $('#modeloNuevaOrden').val("");
+    $('#inputSerieEquipo').val("");
+    $('#inputFallaEquipo').val("");
+    $('#inputNumeroParte').val("");
+    $('#inputIncluye').val("");
+
+}
 

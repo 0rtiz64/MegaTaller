@@ -413,51 +413,45 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                        </div>
 
                                        <div class="form-group col-md-4">
-                                           <input type="text" class="form-control" placeholder="SERIE" style="text-transform: uppercase">
+                                           <input type="text" class="form-control" placeholder="SERIE" style="text-transform: uppercase" id="inputSerieEquipo">
                                        </div>
                                    </div>
 
                                    <div class="row form-group">
 
                                        <div class="form-group col-md-4">
-                                           <input type="text" class="form-control" placeholder="FALLA REPORTADA" style="text-transform: uppercase">
+                                           <input type="text" class="form-control" placeholder="FALLA REPORTADA" style="text-transform: uppercase" id="inputFallaEquipo">
                                        </div>
 
                                        <div class="form-group col-md-4">
-                                           <input type="text" class="form-control" placeholder="NUMERO DE PARTE (OPCIONAL)" style="text-transform: uppercase">
+                                           <input type="text" class="form-control" placeholder="NUMERO DE PARTE (OPCIONAL)" style="text-transform: uppercase" id="inputNumeroParte">
                                        </div>
 
                                        <div class="form-group col-md-4">
-                                           <input type="text" class="form-control" placeholder="INCLUYE">
+                                           <input type="text" class="form-control" placeholder="INCLUYE" style="text-transform: uppercase" id="inputIncluye">
                                        </div>
                                    </div>
 
                                    <div class="col-md-12 form-group" align="center">
-                                       <input type="button" class="btn btn-outline-info" value="AGREGAR EQUIPO">
+                                       <input type="button" class="btn btn-outline-info" value="AGREGAR EQUIPO" onclick="agregarEquipo()">
                                    </div>
 
                                    <div class="col-md-12 form-group">
                                        <!-- DATA TABLE-->
                                        <div class="table-responsive m-b-40">
-                                           <table class="table table-borderless table-data3">
+                                           <table class="table table-borderless table-data3" id="tablaEquiposEnOrden">
                                                <thead>
                                                <tr align="center">
                                                    <td style="color: white;font-size: small">MARCA</td>
                                                    <td style="color: white;font-size: small">MODELO</td>
                                                    <td style="color: white;font-size: small">SERIE</td>
                                                    <td style="color: white;font-size: small">FALLA</td>
-                                                   <td style="color: white;font-size: small">INCLUYE</td>
+                                                   <td style="color: white;font-size: small">OPCION</td>
 
                                                </tr>
                                                </thead>
                                                <tbody>
-                                               <tr align="center">
-                                                   <td>ZEBRA</td>
-                                                   <td>ZQ320</td>
-                                                   <td>XXXJ14518377</td>
-                                                   <td class="denied">NO CARGA</td>
-                                                   <td>FUENTE Y CARGADOR</td>
-                                               </tr>
+
                                                </tbody>
                                            </table>
                                        </div>

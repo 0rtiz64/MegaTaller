@@ -27,7 +27,7 @@ if($queryConfirmar>0){
     echo'<div class="input-group-addon  btn btn-primary" onclick="modalNuevoModelo()">';
     echo'<i class="fa fa-plus-circle"></i>';
     echo'</div>';
-    echo'<select  id="marcaNuevaOrden" class="form-control">';
+    echo'<select  id="modeloNuevaOrden" class="form-control">';
     echo'<option value="">MARCA</option>';
     $queryModelos = mysqli_query($enlace,"SELECT * from modelos WHERE estado = 1 GROUP BY descripcion ASC");
 
