@@ -30,7 +30,7 @@ echo'<tr align="center" id="'.$serie.'">';
     echo'<td name="modeloA[]">'.$serie.'</td>';
     echo'<td  name="serie[]" style="color: #c82333">'.$falla.'</td>';
     echo'<td>';
-        echo'<button type="button" class="btn btn-outline-danger">';
+        echo'<button type="button" class="btn btn-outline-danger" onclick="remover(\''.$serie.'\');">';
             echo'<i class="zmdi zmdi-delete"></i>';
         echo'</button>';
         echo'<input type="hidden" value="'.$pn.'" name="pnA[]">';

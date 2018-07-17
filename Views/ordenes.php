@@ -331,7 +331,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
 
 
             <!-- modal large -->
-            <div class="modal fade" id="largeModalOrdenesServicio" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
+            <div class="modal fade" id="largeModalOrdenesServicio" tabindex="-1" role="dialog" aria-labelledby="scrollmodalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -463,7 +463,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
-                            <button type="button" class="btn btn-primary">CONFIRMAR ORDEN</button>
+                            <button type="button" class="btn btn-primary" onclick="confirmarOrden()">CONFIRMAR ORDEN</button>
                         </div>
                     </div>
                 </div>

@@ -303,3 +303,28 @@ function add(fila) {
 
 }
 
+function remover(serie){
+    $('#'+serie).remove();
+    cont= cont-1;
+    var  indice = equiposEnOrden.indexOf(serie);
+    if (indice == -1){
+        alertify.error("Se produjo un error, notificar al desarrollador");
+    }else{
+        equiposEnOrden.splice(indice,1);
+
+    }
+
+
+}
+
+//FIN AGREGAR EQUIPO A ORDEN
+
+//INICIO CONFIRMAR ORDEN
+function confirmarOrden(){
+    var cliente = document.getElementById('');
+    var nombreContacto = $('#').val();
+    var numeroContacto = $('#').val();
+
+
+}
+//FIN CONFIRMAR ORDEN
