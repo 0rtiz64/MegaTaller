@@ -364,11 +364,11 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                    </div>
 
                                     <div class="form-group col-md-4">
-                                        <input type="text" class="form-control" placeholder="NOMBRE CONTACTO" style="text-transform: uppercase">
+                                        <input type="text" class="form-control" placeholder="NOMBRE CONTACTO" style="text-transform: uppercase" id="nombreContacto">
                                     </div>
 
                                     <div class="form-group col-md-4">
-                                        <input type="number" class="form-control" placeholder="TELEFONO CONTACTO" min="0">
+                                        <input type="number" class="form-control" placeholder="TELEFONO CONTACTO" min="0" id="telefonoContacto">
                                     </div>
                                 </div>
 

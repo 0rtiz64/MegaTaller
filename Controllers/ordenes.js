@@ -317,14 +317,103 @@ function remover(serie){
 
 }
 
-//FIN AGREGAR EQUIPO A ORDEN
+//FIN AGREGAR EQUIPO
 
 //INICIO CONFIRMAR ORDEN
 function confirmarOrden(){
-    var cliente = document.getElementById('');
-    var nombreContacto = $('#').val();
-    var numeroContacto = $('#').val();
+    var cliente = document.getElementById('clienteNuevaOrden').value;
+    var nombreContacto = $('#nombreContacto').val();
+    var numeroContacto = $('#telefonoContacto').val();
+    var url = '../Model/guardarOrden.php';
+    var marca;
+    var modelo;
+    var serie;
+    var falla;
+    var pn;
+    var incluye;
 
+if(cliente.trim().length==""){
+    $('#clienteNuevaOrden').addClass('is-invalid');
+    alertify.error("CLIENTE VACIO");
+    return false;
+}else{
+    $('#clienteNuevaOrden').removeClass('is-invalid');
+    $('#clienteNuevaOrden').addClass('is-valid');
+
+    if(nombreContacto.trim().length==""){
+        $('#nombreContacto').addClass('is-invalid');
+        alertify.error("NOMBRE CONTACTO VACIO");
+        return false;
+    }else{
+        $('#nombreContacto').removeClass('is-invalid');
+        $('#nombreContacto').addClass('is-valid');
+
+        if(numeroContacto.trim().length==""){
+            $('#telefonoContacto').addClass('is-invalid');
+            alertify.error("TELEFONO CONTACTO VACIO");
+            return false;
+        }else{
+            $('#telefonoContacto').removeClass('is-invalid');
+            $('#telefonoContacto').addClass('is-valid');
+
+            if(equiposEnOrden.length ==""){
+                alertify.error("NO SE HA AGREGADO EQUIPO");
+                return false;
+            }
+        }// TELEFONO CONTACTO
+    }//FIN NOMBRE CONTACTO
+}//FIN CLIENTE
+
+
+    $("input[name='marcaA[]']").each(function () {
+        marca=marca+","+$(this).val();
+    });
+
+    $("input[name='modeloA[]']").each(function () {
+        modelo=modelo+","+$(this).val();
+    });
+
+    $("input[name='serieA[]']").each(function () {
+        serie=serie+","+$(this).val();
+    });
+
+    $("input[name='falla[]']").each(function () {
+        falla=falla+","+$(this).val();
+    });
+
+    $("input[name='pnA[]']").each(function () {
+        pn=pn+","+$(this).val();
+    });
+
+    $("input[name='incluyeA[]']").each(function () {
+        incluye=incluye+","+$(this).val();
+    });
+
+
+
+    $.ajax({
+        type:'POST',
+        url:url,
+        data:{
+            phpIdCliente: cliente,
+            phpNombreContacto: nombreContacto,
+            phpNumeroContacto: numeroContacto,
+            phpMarca: marca,
+            phpModelo: modelo,
+            phpSerie: serie,
+            phpFalla: falla,
+            phpPn: pn,
+            phpIncluye: incluye
+        },
+        success: function(callBack){
+
+            alert(callBack);
+
+            return false;
+
+
+        }
+    });
 
 }
 //FIN CONFIRMAR ORDEN

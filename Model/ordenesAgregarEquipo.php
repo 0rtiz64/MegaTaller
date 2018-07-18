@@ -25,10 +25,10 @@ $datosModelo = mysqli_fetch_array($queryModelo,MYSQLI_ASSOC);
 $modeloNombre = $datosModelo["descripcion"];
 
 echo'<tr align="center" id="'.$serie.'">';
-    echo'<td name="marcaA[]">'.$marcaNombre.'</td>';
-    echo'<td name="modeloA[]">'.$modeloNombre.'</td>';
-    echo'<td name="modeloA[]">'.$serie.'</td>';
-    echo'<td  name="serie[]" style="color: #c82333">'.$falla.'</td>';
+    echo'<td>'.$marcaNombre.' <input type="hidden" value="'.$marca.'" name="marcaA[]" ></td>';
+    echo'<td>'.$modeloNombre.' <input type="hidden" value="'.$modelo.'" name="modeloA[]"></td>';
+    echo'<td >'.$serie.' <input type="hidden" value="'.$serie.'" name="serieA[]"> </td>';
+    echo'<td style="color: #c82333">'.$falla.' <input type="hidden" value="'.$falla.'" name="falla[]"></td>';
     echo'<td>';
         echo'<button type="button" class="btn btn-outline-danger" onclick="remover(\''.$serie.'\');">';
             echo'<i class="zmdi zmdi-delete"></i>';
