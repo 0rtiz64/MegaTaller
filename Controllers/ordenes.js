@@ -315,6 +315,12 @@ function remover(serie){
     }
 
 
+};
+
+
+function removerTodos(serie){
+    $('#'+serie).remove();
+    cont= cont-1;
 }
 
 //FIN AGREGAR EQUIPO
@@ -322,8 +328,10 @@ function remover(serie){
 //INICIO CONFIRMAR ORDEN
 function confirmarOrden(){
     var cliente = document.getElementById('clienteNuevaOrden').value;
-    var nombreContacto = $('#nombreContacto').val();
+    var nombreContacto1 = $('#nombreContacto').val();
+    var nombreContacto =nombreContacto1.toUpperCase();
     var numeroContacto = $('#telefonoContacto').val();
+    var idUsuarioRecibe = $('#idUsuario').val();
     var url = '../Model/guardarOrden.php';
     var marca;
     var modelo;
@@ -403,15 +411,29 @@ if(cliente.trim().length==""){
             phpSerie: serie,
             phpFalla: falla,
             phpPn: pn,
-            phpIncluye: incluye
+            phpIncluye: incluye,
+            phpIdUsuarioRecibe: idUsuarioRecibe
         },
         success: function(callBack){
+             $('#contadorOrdenes').html(callBack);
+            alertify.success("ORDEN REGISTRADA CORRECTAMENTE");
+            $('#largeModalOrdenesServicio').modal('hide');
 
-            alert(callBack);
+            $('#clienteNuevaOrden').val("");
+            $('#nombreContacto').val("");
+            $('#telefonoContacto').val("");
+            $('#marcaNuevaOrden').val("");
+            $('#modeloNuevaOrden').val("");
+            $('#inputSerieEquipo').val("");
+            $('#inputFallaEquipo').val("");
+            $('#inputNumeroParte').val("");
+            $('#inputIncluye').val("");
 
+            for(var i = 0; i <equiposEnOrden.length; i++){
+                removerTodos(equiposEnOrden[i]);
+            }
+            equiposEnOrden=[];
             return false;
-
-
         }
     });
 

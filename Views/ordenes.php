@@ -10,6 +10,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
     <html lang="en">
 
     <head>
+        <link rel="shortcut icon" href="../images/icon/megaIco.ico" type="image/png">
         <!-- Required meta tags-->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -92,8 +93,17 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                     <img src="../images/icon/logo-white.png" alt="CoolAdmin" />
                                 </a>
                             </div>
+
+
                             <div class="header-button2">
-                                <div class=header-wrap" style="margin-right: 5%">
+
+
+                                <div class="header-wrap"style="margin-left: -70%">
+                                    <p style="color: white">ORDENES DE HOY: </p>
+                                    <div id="contadorOrdenes" style="margin-right: -5%">
+                                    </div>
+                                </div>
+                                <div class=header-wrap" style="margin-left: 60%;margin-right: 5%">
                                     <div class="form-header">
                                         <input style="text-transform: uppercase" class="au-input au-input--xl" type="text" placeholder="Busca el Historial de un Equipo" id="inputBuscarHistorial" />
                                         <button class="btn btn-info" type="button" onclick="historialEquipo();">
@@ -324,10 +334,13 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
-            </section>
 
+
+
+            </section>
 
 
             <!-- modal large -->
@@ -654,7 +667,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
 }
 else
 {
-    header("location: ./");
+    header("location: ../");
     session_start();
     session_destroy();
 }

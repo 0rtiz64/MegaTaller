@@ -10,6 +10,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
     <html lang="en">
 
     <head>
+        <link rel="shortcut icon" href="../images/icon/megaIco.ico" type="image/png">
         <!-- Required meta tags-->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -340,7 +341,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
 }
 else
 {
-    header("location: ./");
+    header("location: ../");
     session_start();
     session_destroy();
 }
