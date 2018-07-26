@@ -6,9 +6,9 @@ $contenido = '
 <div>   
 	<table WIDTH=500 style="text-align: center;"> 
 		<tr>
-			<td align="left"> <img style="width: 70px;height: 70px" src="../images/icon/LOGO1.png" /> </td>
+			<td> <img style="width: 100px;height: 70px; margin-right: 25%" src="../images/icon/LOGO1.png" /> </td>
 		
-			<td> <h3 align="center">ORDEN DE SERVICIO 01267</h3> </td>
+			<td> <h3 align="center" style="margin-right: -55%">ORDEN DE SERVICIO 180001</h3> </td>
 		</tr>
 	<table>
 
@@ -46,6 +46,10 @@ $contenido = '
 		
 		<tr>
 			<td style="padding: 0; text-align: center">Descripcion del Servicio Solicitado o Falla Reportada</td>
+		</tr>
+		
+		<tr>
+			<td></td>
 		</tr>
 		<tr>
 			<td></td>
@@ -178,7 +182,7 @@ $contenido = '
 
 </div>
 
-<div style="margin-top: 120px;">
+<div style="margin-top: 10px;">
 <table  border=1 cellspacing="0" style="text-align: center; font-size: 14px; margin-right: 5px;" WIDTH="100%"> 
 <tbody>
 	<tr>
@@ -220,7 +224,7 @@ require_once '../vendor/dompdf/autoload.inc.php';
 use Dompdf\Dompdf;
 $dompdf = new Dompdf();
 $dompdf->loadHtml($contenido); 
- $dompdf->setPaper('A4', 'portrait');
+ $dompdf->setPaper('Carta', 'portrait');
  $dompdf->render();
- $dompdf->stream("Prestamo a ");
+ $dompdf->stream("Prestamo a ",array('Attachment'=>0));
  ?>

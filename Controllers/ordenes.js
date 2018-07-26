@@ -415,7 +415,9 @@ if(cliente.trim().length==""){
             phpIdUsuarioRecibe: idUsuarioRecibe
         },
         success: function(callBack){
-             $('#contadorOrdenes').html(callBack);
+            var datos = eval(callBack);
+             $('#contadorOrdenes').html(datos[0]);
+             $('#tableOrdenesServicio').html(datos[1]);
             alertify.success("ORDEN REGISTRADA CORRECTAMENTE");
             $('#largeModalOrdenesServicio').modal('hide');
 
@@ -439,3 +441,8 @@ if(cliente.trim().length==""){
 
 }
 //FIN CONFIRMAR ORDEN
+
+
+$('#fechaOrdenServicio').focusin(function(){
+   alert("IN");
+});
