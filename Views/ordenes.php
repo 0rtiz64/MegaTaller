@@ -354,80 +354,23 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                         <div class="row">
 <div class="form-group col-md-12" >
     <div class="form-group col-md-6">
-        <label>BUSCAR ORDEN POR FECHA</label>
+        <label>BUSCAR ORDEN POR CLIENTE</label>
     </div>
-    <div class="form-group col-md-12">
-        <input type="date" class="form-control" id="fechaOrdenServicio">
+    <div class="form-group col-md-12" id="divSelectClienteOrden">
+        <select id="selectClientesOrden" class="form-control">
+            <option value="">CLIENTE</option>
+            <?php
+            $queryClientesBusqueda= mysqli_query($enlace,"SELECT * from clientes where estado =1 GROUP BY nombre ASC");
+            while ($datosClientesBusqueda = mysqli_fetch_array($queryClientesBusqueda,MYSQLI_ASSOC)){
+               echo'<option value="'.$datosClientesBusqueda["idCliente"].'">'.$datosClientesBusqueda["nombre"].'</option>';
+            }
+            ?>
+        </select>
     </div>
 </div>
 
 
                             <div class="table-responsive" id="tableOrdenesServicio">
-
-                                <?php
-                                include '../funciones/enlace.php';
-                                $fechaActual = date('Y-m-d ');
-                                $queryTomarOrdenesDeFechaActual = mysqli_query($enlace,"select  clientes.nombre,usuarios.nombre AS recibio,ordenesservicio.correlativo,ordenesservicio.estado from ordenesservicio  
-                            INNER JOIN clientes on ordenesservicio.idCliente = clientes.idCliente
-                            INNER JOIN usuarios on ordenesservicio.idUsuarioRecibe = usuarios.idUsuario
-WHERE CAST(ordenesservicio.fechaIngreso AS DATE) = '".$fechaActual."' GROUP BY ordenesservicio.correlativo DESC");
-
-
-
-                                echo' <table class="table table-borderless table-data3">';
-                                    echo'<thead>';
-                                        echo'<tr align="center">';
-                                            echo'<td style="color: white"><strong>CLIENTE</strong></td>';
-                                            echo'<td style="color: white"><strong>RECIBIO</strong></td>';
-                                            echo'<td style="color: white"><strong>EXPEDIENTE</strong></td>';
-                                            echo'<td style="color: white"><strong>ESTADO</strong></td>';
-                                            echo'<td style="color: white"><strong>OPCIONES</strong></td>';
-                                        echo'</tr>';
-                                    echo'</thead>';
-                                    echo'<tbody>';
-
-                                    while($datosTabla = mysqli_fetch_array($queryTomarOrdenesDeFechaActual,MYSQLI_ASSOC)){
-
-                                       // INICIO ESTADOS
-                                        if($datosTabla["estado"]==1){
-                                            $estado = "PENDIENTE";
-                                            $clase= "style='color:#FA4251'";
-                                        }else{
-                                            if($datosTabla["estado"]==2){
-                                                $estado = "EN PROCESO";
-                                                $clase= "style='color:#E0A800'";
-                                            }else{
-                                                if($datosTabla["estado"]==3){
-                                                    $estado = "FINALIZADO";
-                                                    $clase= "style='color:#218838'";
-                                                }
-                                            }
-                                        }
-                                        // FIN ESTADOS
-
-
-                                        echo'<tr align="center">';
-                                        echo'<td><strong>'.$datosTabla["nombre"].'</strong></td>';
-                                       echo' <td><strong>'.$datosTabla["recibio"].'</strong></td>';
-                                        echo'<td><strong>'.$datosTabla["correlativo"].'</strong></td>';
-                                        echo'<td '.$clase.' ><strong>'.$estado.'</strong></td>';
-                                        echo'<td >';
-                                            echo'<div class="table-data-feature" style="margin-right: 15%">';
-                                                echo'<button class="item" data-toggle="tooltip"  data-placement="top" title="VER DETALLES">';
-                                                    echo'<i class="zmdi zmdi-eye"></i>';
-                                                echo'</button>';
-                                            echo'</div>';
-                                        echo'</td>';
-                                    echo'</tr>';
-                                    }
-
-                                     echo'';
-                                echo'</table>';
-                                ?>
-
-
-
-
                             </div>
                         </div>
                     </div>

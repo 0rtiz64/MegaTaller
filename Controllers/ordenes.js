@@ -78,8 +78,8 @@ function guardarClienteNuevo() {
             phpDireccion: direccion
         },
         success: function(respuesta){
-
-            if(respuesta == 0){
+var datos= eval(respuesta);
+            if(datos[0] == 0){
                 alertify.error("CLIENTE DUPLICADO");
                 $('#nombreNuevoCliente').val("");
                 $('#nuevoClienteVendedor').val("");
@@ -89,7 +89,8 @@ function guardarClienteNuevo() {
                 $('#nuevoClienteVendedor').val("");
                 $('#direccionNuevoCliente').val("");
                 alertify.success("CLIENTE GUARDADO");
-                $('#divClientes').html(respuesta);
+                $('#divClientes').html(datos[0]);
+                $('#divSelectClienteOrden').html(datos[1]);
                 $('#modalNuevoCliente').modal('hide');
             }
 
@@ -443,6 +444,32 @@ if(cliente.trim().length==""){
 //FIN CONFIRMAR ORDEN
 
 
-$('#fechaOrdenServicio').focusin(function(){
-   alert("IN");
-});
+$('#selectClientesOrden').change(function(){
+     var idCliente= document.getElementById('selectClientesOrden').value;
+    var url = '../Model/ordenPorCliente.php';
+     if(idCliente.trim().length==""){
+        return false;
+    }
+
+    $.ajax({
+        type:'POST',
+        url:url,
+        data:{
+            phpIdCliente: idCliente
+        },
+        success: function(respuesta){
+            if(respuesta== 0){
+                alertify.error("NO EXISTEN ORDENES PARA ESTE CLIENTE");
+                $('#tableOrdenesServicio').html("");
+            }else{
+                $('#tableOrdenesServicio').hide().fadeIn('slow').html(respuesta);
+            }
+            return false;
+
+
+        }
+    });
+
+return false;
+
+     });

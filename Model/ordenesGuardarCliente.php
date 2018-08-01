@@ -13,26 +13,61 @@ $direccion = $_POST['phpDireccion'];
 $fechaentrada = date('Y-m-d  h:i:s');
 
 
-$queryConfirmar = mysqli_num_rows(mysqli_query($enlace,"SELECT * from clientes where nombre = '".$nombreCliente."'  "));
+$queryConfirmar = mysqli_num_rows(mysqli_query($enlace,"SELECT * from clientes where nombre = '".$nombreCliente."'"));
 
 if($queryConfirmar>0){
-    echo 0;
+    $datos = array(
+        0 => 0,
+        1 => 0,
+    );
+    echo json_encode($datos);
 }else{
 $queryGuardar = mysqli_query($enlace,"insert into clientes(idVendedor,nombre,direccion,fechaRegistro,estado) values 
 	($idVendedor,'".$nombreCliente."','".$direccion."','".$fechaentrada."',1)");
 $queryConsultarClientes = mysqli_query($enlace,"SELECT * from clientes WHERE estado = 1 GROUP BY nombre ASC");
 
-    echo'<div class="input-group">';
-        echo'<div class="input-group-addon  btn btn-primary" onclick="modalNuevoCliente()">';
-            echo'<i class="fa fa-plus-circle"></i>';
-        echo'</div>';
-            echo'<select  id="clienteNuevaOrden" class="form-control">';
-                echo'<option value="">CLIENTE</option>';
+$selectClientesModal= '
+<div class="input-group">
+    <div class="input-group-addon  btn btn-primary" onclick="modalNuevoCliente()">
+        <i class="fa fa-plus-circle"></i>
+    </div>
+    <select  id="clienteNuevaOrden" class="form-control">
+        <option value="">CLIENTE</option>
+';
+
 while($datosClientesQuery = mysqli_fetch_array($queryConsultarClientes,MYSQLI_ASSOC)){
-    echo ' <option value="'.$datosClientesQuery["idCliente"].'">'.$datosClientesQuery["nombre"].'</option>';
+    $selectClientesModal.='
+        <option value="'.$datosClientesQuery["idCliente"].'">'.$datosClientesQuery["nombre"].'</option>
+    ';
+
 }
-    echo'</select>';
-echo '</div>';
+$selectClientesModal.='
+    </select>
+</div>
+';
+
+
+$selecClientesBusqueda ='
+ <select id="selectClientesOrden" class="form-control">
+            <option value="">CLIENTE</option>
+';
+
+            $queryClientesBusqueda= mysqli_query($enlace,"SELECT * from clientes where estado =1 GROUP BY nombre ASC");
+            while ($datosClientesBusqueda = mysqli_fetch_array($queryClientesBusqueda,MYSQLI_ASSOC)){
+               $selecClientesBusqueda.='
+               <option value="'.$datosClientesBusqueda["idCliente"].'">'.$datosClientesBusqueda["nombre"].'</option>
+               ';
+            }
+
+        $selecClientesBusqueda.='</select>';
+
+
+    $datos = array(
+        0 => $selectClientesModal,
+        1 => $selecClientesBusqueda,
+    );
+    echo json_encode($datos);
+
 }
 
 ?>
