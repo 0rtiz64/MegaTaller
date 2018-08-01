@@ -12,7 +12,7 @@ $confirmarOrdenes = mysqli_num_rows(mysqli_query($enlace,"SELECT * from ordeness
 if($confirmarOrdenes>0){
 
     //INICIO
-    $queryTomarOrdenesDeCliente = mysqli_query($enlace,"select  clientes.nombre,usuarios.nombre AS recibio,ordenesservicio.correlativo,ordenesservicio.estado from ordenesservicio  
+    $queryTomarOrdenesDeCliente = mysqli_query($enlace,"select  ordenesservicio.idOrden,clientes.nombre,usuarios.nombre AS recibio,ordenesservicio.correlativo,ordenesservicio.estado from ordenesservicio  
                             INNER JOIN clientes on ordenesservicio.idCliente = clientes.idCliente
                             INNER JOIN usuarios on ordenesservicio.idUsuarioRecibe = usuarios.idUsuario
 WHERE ordenesservicio.idCliente= $idCliente GROUP BY ordenesservicio.correlativo DESC");
@@ -61,7 +61,7 @@ $tabla .='
     <td '.$clase.' ><strong>'.$estado.'</strong></td>
      <td>
         <div class="table-data-feature" style="margin-right: 15%">
-            <button class="item" data-toggle="tooltip"  data-placement="top" title="VER DETALLES">
+            <button class="item" data-toggle="tooltip"  data-placement="top" title="VER DETALLES" onclick="modalDetalleOrden('.$datosTabla["idOrden"].');">
                 <i class="zmdi zmdi-eye"></i>
             </button>  
          </div>

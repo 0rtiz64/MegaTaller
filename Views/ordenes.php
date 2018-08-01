@@ -613,6 +613,41 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
             <!-- FIN NUEVO MODELO-->
 
 
+                <!-- INICIO MODAL DETALLE ORDEN  -->
+                <div class="modal fade" id="modalDetalleOrden" tabindex="-1" role="dialog" aria-labelledby="scrollmodalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="scrollmodalLabel">DETALLES ORDEN DE SERVICIO</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row form-group">
+                                    <div class="form-group col-md-6" id="clienteDetalleOrden"></div>
+
+                                    <div class="form-group col-md-6" id="correlativoDetalleOrden"></div>
+                                </div>
+
+                                <div class="form-group col-md-12" id="tablaEquiposEnOrdenDetalle" >
+
+                                </div>
+
+
+                                <div class="progress mb-2">
+                                    <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated" role="progressbar" style="width: 90%" aria-valuenow="90"
+                                         aria-valuemin="0" aria-valuemax="100">90%</div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- INICIO MODAL DETALLE ORDEN  -->
+
 
             <!-- END PAGE CONTAINER-->
         </div>

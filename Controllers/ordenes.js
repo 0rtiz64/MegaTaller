@@ -35,6 +35,37 @@ function modalNuevoModelo(){
         backdrop:'static'
     });//FIN ABRIR MODAL
 }
+
+
+function modalDetalleOrden(idOrdenServicio){
+ var url = '../Model/detallesOrden.php';
+    $.ajax({
+        type:'POST',
+        url:url,
+        data:{
+            phpIdOrden: idOrdenServicio
+        },
+        success: function(respuesta){
+            var datos = eval(respuesta);
+
+            $('#clienteDetalleOrden').html(datos[0]);
+            $('#correlativoDetalleOrden').html(datos[1]);
+            $('#tablaEquiposEnOrdenDetalle').html(datos[2]);
+
+
+            $('#modalDetalleOrden').modal({
+                show:true,
+                backdrop:'static'
+            });//FIN ABRIR MODAL
+
+            return false;
+
+
+        }
+    });
+
+
+}
 // FIN MODALES
 
 
@@ -448,6 +479,7 @@ $('#selectClientesOrden').change(function(){
      var idCliente= document.getElementById('selectClientesOrden').value;
     var url = '../Model/ordenPorCliente.php';
      if(idCliente.trim().length==""){
+         $('#tableOrdenesServicio').hide(200).html("");
         return false;
     }
 
