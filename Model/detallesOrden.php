@@ -22,7 +22,7 @@ $correlativo= '<h4 align="right">'.$datosClienteOrden["correlativo"].'</h4>';
 
 
 
-$queryTomarEquipos = mysqli_query($enlace,"SELECT clientes.nombre,ordenesservicio.correlativo,modelos.descripcion,equipos.serie,detalleordenesservicio.estado,detalleordenesservicio.fechaEntrega from ordenesservicio 
+$queryTomarEquipos = mysqli_query($enlace,"SELECT equipos.serie,clientes.nombre,ordenesservicio.correlativo,modelos.descripcion,equipos.serie,detalleordenesservicio.estado,detalleordenesservicio.fechaEntrega from ordenesservicio 
 INNER JOIN detalleordenesservicio on ordenesservicio.idOrden = detalleordenesservicio.idOrdenServicio
 INNER JOIN clientes on ordenesservicio.idCliente = clientes.idCliente
 INNER JOIN  equipos on detalleordenesservicio.idEquipo = equipos.idEquipo
@@ -37,6 +37,7 @@ $tablaModal ='
                                                 <td style="color: #ffffff;"><strong>SERIE</strong></td>
                                                 <td style="color: #ffffff;"><strong>ESTADO</strong></td>
                                                 <td style="color: #ffffff;"><strong>FECHA ENTREGA</strong></td>
+                                                <td style="color: #ffffff;"><strong>COMPROBANTE</strong></td>
                                             </tr>
                                             </thead>
                                             <tbody>';
@@ -45,14 +46,22 @@ while($datosEquiposEnOrden = mysqli_fetch_array($queryTomarEquipos,MYSQLI_ASSOC)
     if($datosEquiposEnOrden["estado"]==1){
         $estado = "PENDIENTE";
         $clase= "style='color:#FA4251'";
+        $botonOrden = "";
     }else{
         if($datosEquiposEnOrden["estado"]==2){
             $estado = "FINALIZADO";
             $clase= "style='color:#218838'";
+            $botonOrden = ' <button onclick="verComprobante('.$datosEquiposEnOrden["serie"].');" type="button" class="btn btn-outline-primary btn-sm" title="VER ORDEN">
+                              <i class="fa fa-location-arrow"></i>&nbsp;
+                             </button>';
         }else{
             if($datosEquiposEnOrden["estado"]==3){
                 $estado = "ENTREGADO";
                 $clase= "style='color:#0069D9'";
+                $botonOrden = ' <button onclick="verComprobante('.$datosEquiposEnOrden["serie"].');" type="button" class="btn btn-outline-primary btn-sm" title="VER ORDEN">
+                              <i class="fa fa-location-arrow"></i>&nbsp;
+                             </button>';
+            }else{
             }
         }
     }
@@ -126,7 +135,12 @@ while($datosEquiposEnOrden = mysqli_fetch_array($queryTomarEquipos,MYSQLI_ASSOC)
                                                 <td><strong>'.$datosEquiposEnOrden["descripcion"].'</strong></td>
                                                 <td><strong>'.$datosEquiposEnOrden["serie"].'</strong></td>
                                                 <td '.$clase.'><strong>'.$estado.'</strong></td>
-                                                <td><strong>'.$fCompleta.'</strong></td>
+                                                <td style="font-size: small"><strong>'.$fCompleta.'</strong></td>
+                                                <td>
+                                                    <strong>
+                                                       '.$botonOrden.'
+                                                    </strong>
+                                                </td>
 
                                             </tr>
 ';

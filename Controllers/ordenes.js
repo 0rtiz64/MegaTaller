@@ -506,3 +506,10 @@ $('#selectClientesOrden').change(function(){
 return false;
 
      });
+
+
+//INICIO VER COMPROBANTE
+function verComprobante (serie){
+    alert("GENERANDO COMPROBANTE");
+}
+//FIN VER COMPROBANTE
