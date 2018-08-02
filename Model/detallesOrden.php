@@ -48,11 +48,11 @@ while($datosEquiposEnOrden = mysqli_fetch_array($queryTomarEquipos,MYSQLI_ASSOC)
     }else{
         if($datosEquiposEnOrden["estado"]==2){
             $estado = "FINALIZADO";
-            $clase= "style='color:#E0A800'";
+            $clase= "style='color:#218838'";
         }else{
-            if($datosEquiposEnOrden["estado"]==2){
+            if($datosEquiposEnOrden["estado"]==3){
                 $estado = "ENTREGADO";
-                $clase= "style='color:#FA4D5B'";
+                $clase= "style='color:#0069D9'";
             }
         }
     }
@@ -140,9 +140,52 @@ $tablaModal.= '
 
 
 
+//INICIO BARRA DE CARGA
+$queryCantidadTotalPorOrden = mysqli_query($enlace,"select  COUNT(*) as cantidad from detalleordenesservicio 
+WHERE detalleordenesservicio.idOrdenServicio = $idOrdenServicio");
+$datosTotalEquiposEnOrden = mysqli_fetch_array($queryCantidadTotalPorOrden,MYSQLI_ASSOC);
+$totales = $datosTotalEquiposEnOrden["cantidad"];
+
+$queryCantidadTotalPorOrdenFinalizados =mysqli_query($enlace,"select  COUNT(*) as finalizados from detalleordenesservicio 
+WHERE detalleordenesservicio.estado >=2 and detalleordenesservicio.idOrdenServicio =$idOrdenServicio");
+$datosTotalEquiposEnOrdenFinalizados = mysqli_fetch_array($queryCantidadTotalPorOrdenFinalizados,MYSQLI_ASSOC);
+$finalizados = $datosTotalEquiposEnOrdenFinalizados["finalizados"];
+
+$porcentaje1 = ($finalizados*100)/$totales;
+$porcentaje = round($porcentaje1);
+
+if($porcentaje <=50){
+    $claseBarra = 'progress-bar bg-danger progress-bar-striped progress-bar-animated';
+}else{
+    if($porcentaje>50 && $porcentaje <=75){
+        $claseBarra = 'progress-bar bg-primary progress-bar-striped progress-bar-animated';
+    }else{
+        if($porcentaje>75){
+            $claseBarra = 'progress-bar bg-success progress-bar-striped progress-bar-animated';
+        }
+    }
+}
+if($porcentaje == 0){
+    $barra = '
+<div class="progress-bar bg-danger progress-bar-striped progress-bar-animated" role="progressbar" style="width:10%" aria-valuenow="90"aria-valuemin="0" aria-valuemax="100">
+                                         '.$porcentaje.'%
+                                         </div>
+';
+}else{
+    $barra = '
+<div class="'.$claseBarra.'" role="progressbar" style="width:'.$porcentaje.'%" aria-valuenow="90"aria-valuemin="0" aria-valuemax="100">
+                                         '.$porcentaje.'%
+                                         </div>
+';
+}
+
+
+//FIN BARRA DE CARGA
+
 $datos = array(
     0 => $cliente,
     1 => $correlativo,
     2 => $tablaModal,
+    3 => $barra,
 );
 echo json_encode($datos);

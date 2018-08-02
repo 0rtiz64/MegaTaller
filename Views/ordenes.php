@@ -635,9 +635,8 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                 </div>
 
 
-                                <div class="progress mb-2">
-                                    <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated" role="progressbar" style="width: 90%" aria-valuenow="90"
-                                         aria-valuemin="0" aria-valuemax="100">90%</div>
+                                <div class="progress mb-2" id="barraProgreso">
+
                                 </div>
                             </div>
                             <div class="modal-footer">

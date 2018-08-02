@@ -51,6 +51,7 @@ function modalDetalleOrden(idOrdenServicio){
             $('#clienteDetalleOrden').html(datos[0]);
             $('#correlativoDetalleOrden').html(datos[1]);
             $('#tablaEquiposEnOrdenDetalle').html(datos[2]);
+            $('#barraProgreso').html(datos[3]);
 
 
             $('#modalDetalleOrden').modal({
