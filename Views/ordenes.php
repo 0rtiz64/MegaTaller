@@ -91,7 +91,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                         <div class="header-wrap2">
                             <div class="logo d-block d-lg-none">
                                 <a href="#">
-                                    <img src="../images/icon/logo-white.png" alt="CoolAdmin" />
+                                    <img src="#" alt="CoolAdmin" />
                                 </a>
                             </div>
 
@@ -175,13 +175,13 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
             <aside class="menu-sidebar2 js-right-sidebar d-block d-lg-none">
                 <div class="logo">
                     <a href="#">
-                        <img src="../images/icon/logo-white.png" alt="Cool Admin" />
+                        <img src="#" alt="Cool Admin" />
                     </a>
                 </div>
                 <div class="menu-sidebar2__content js-scrollbar2">
                     <div class="account2">
                         <div class="image img-cir img-120">
-                            <img src="../images/icon/avatar-big-01.jpg" alt="John Doe" />
+                            <img src="#" alt="John Doe" />
                         </div>
                         <h4 class="name">john doe</h4>
                         <a href="#">Sign out</a>
@@ -352,11 +352,11 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="row">
-<div class="form-group col-md-12" >
-    <div class="form-group col-md-6">
+<div class="row form-group col-md-12" >
+    <div class="form-group col-md-12">
         <label>BUSCAR ORDEN POR CLIENTE</label>
     </div>
-    <div class="form-group col-md-12" id="divSelectClienteOrden">
+    <div class="col-md-6" id="divSelectClienteOrden">
         <select id="selectClientesOrden" class="form-control">
             <option value="">CLIENTE</option>
             <?php
@@ -367,6 +367,13 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
             ?>
         </select>
     </div>
+
+    <div class="col-md-6">
+        <input type="text" class="form-control" placeholder="LEER ETIQUETA DE EQUIPO" id="inputLeerEtiquetaEquipo">
+    </div>
+    <form >
+        <input type="submit" class="btn btn-success collapse" onclick="buscarEquipo();">
+    </form>
 </div>
 
 
@@ -509,6 +516,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
+                            <button type="button" class="btn btn-info"  onclick="imprimirEtiquetas();">IMPRIMIR ETIQUETAS</button>
                             <button type="button" class="btn btn-primary" onclick="confirmarOrden()">CONFIRMAR ORDEN</button>
                         </div>
                     </div>
@@ -679,6 +687,8 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
     <script src="../vendor/vector-map/jquery.vmap.world.js"></script>
 
     <script src="../vendor/alertify/alertify.js"></script>
+
+
     <!-- Main JS-->
     <script>
 
@@ -721,8 +731,31 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
             alert("RECUERDA AGREGAR FUNCION BUSCAR HISTORIAL EN TODAS LAS VIEWS");
         }
     </script>
-    <script src="../js/main.js"></script>
-    <script src="../Controllers/ordenes.js"></script>
+
+
+
+        <script type="text/javascript" src="../ZebraBrowserPrint/sample/js/BrowserPrint-1.0.4.min.js"></script>
+        <script type="text/javascript" src="../ZebraBrowserPrint/sample/js/etiquetaOrdenServicio.js"></script>
+
+        <script type="text/javascript">
+            var OSName="Unknown OS";
+            if (navigator.appVersion.indexOf("Win")!=-1) OSName="Windows";
+            //{
+            //OSName="Windows";
+            //document.write('<a href="ZebraWebPrint.exe" class="navbar-brand" href="#">Download the '+OSName+' App</a>');
+            //}
+            if (navigator.appVersion.indexOf("Mac")!=-1) OSName="MacOS";
+            if (navigator.appVersion.indexOf("X11")!=-1) OSName="UNIX";
+            if (navigator.appVersion.indexOf("Linux")!=-1) OSName="Linux";
+
+        </script>
+
+        <script type="text/javascript">
+            $(document).ready(setup_web_print);
+        </script>
+
+        <script src="../js/main.js"></script>
+        <script src="../Controllers/ordenes.js"></script>
 
     </body>
 

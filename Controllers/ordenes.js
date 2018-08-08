@@ -450,10 +450,8 @@ if(cliente.trim().length==""){
         success: function(callBack){
             var datos = eval(callBack);
              $('#contadorOrdenes').html(datos[0]);
-             $('#tableOrdenesServicio').html(datos[1]);
             alertify.success("ORDEN REGISTRADA CORRECTAMENTE");
             $('#largeModalOrdenesServicio').modal('hide');
-
             $('#clienteNuevaOrden').val("");
             $('#nombreContacto').val("");
             $('#telefonoContacto').val("");
@@ -513,3 +511,17 @@ function verComprobante (serie){
     alert("GENERANDO COMPROBANTE");
 }
 //FIN VER COMPROBANTE
+
+
+//INICIO BUSCAR EQUIPO
+function buscarEquipo(){
+    alert("BUSCANDO EQUIPO");
+    var equipo = $('#inputLeerEtiquetaEquipo').val();
+
+    if(equipo.trim().length==""){
+        alertify.error("EQUIPO VACIO");
+    }else{
+        alert("BUSCANDO EQUIPO");
+    }
+}
+//FIN BUSCAR EQUIPO
