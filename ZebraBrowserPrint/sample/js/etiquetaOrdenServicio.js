@@ -140,7 +140,7 @@ function imprimirEtiquetas() {
         success: function(series){
                 for (var i = 0; i<series.length; i++){
                     console.log(series[i]);
-                  //  imprimirEtiquetasOrden(series[i]);
+                   imprimirEtiquetasOrden(series[i]);
                 }
             return false;
         }
@@ -150,7 +150,7 @@ function imprimirEtiquetas() {
 
 
 
-function imprimirEtiquetasOrden(serie)
+function imprimirEtiquetasOrden()
 {
 
     showLoading("Printing...");
@@ -158,7 +158,7 @@ function imprimirEtiquetasOrden(serie)
         if (text == "Ready to Print")
         {
 
-            selected_printer.send(op1+serie+op2+serie+op3, printComplete, printerError);
+            selected_printer.send(miZpl, printComplete, printerError);
 
         }
         else

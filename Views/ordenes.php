@@ -377,8 +377,15 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
 </div>
 
 
-                            <div class="table-responsive" id="tableOrdenesServicio">
+                            <div class="table-responsive" id="tableOrdenesServicio"></div>
+                            <div id="toolbar">
+                                <button id="yellow">Yellow</button>
+                                <button id="blue">Blue</button>
+                                <button id="red">Red</button>
+                                <button id="reset">Reset</button>
                             </div>
+
+                            <canvas id="myCanvas" width="300" height="300">(Your browser doesn't support canvas)</canvas>
                         </div>
                     </div>
                 </div>
@@ -485,6 +492,8 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                        </div>
                                    </div>
 
+
+
                                    <div class="col-md-12 form-group" align="center">
                                        <input type="button" class="btn btn-outline-info" value="AGREGAR EQUIPO" onclick="agregarEquipo()">
                                    </div>
@@ -516,7 +525,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
-                            <button type="button" class="btn btn-info"  onclick="imprimirEtiquetas();">IMPRIMIR ETIQUETAS</button>
+                            <button type="button" class="btn btn-info"  onclick="imprimirEtiquetasOrden();">IMPRIMIR ETIQUETAS</button>
                             <button type="button" class="btn btn-primary" onclick="confirmarOrden()">CONFIRMAR ORDEN</button>
                         </div>
                     </div>
@@ -756,7 +765,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
 
         <script src="../js/main.js"></script>
         <script src="../Controllers/ordenes.js"></script>
-
+        <script src="../test/functions.js"></script>
     </body>
 
     </html>

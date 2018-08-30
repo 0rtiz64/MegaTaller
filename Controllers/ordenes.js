@@ -525,3 +525,6 @@ function buscarEquipo(){
     }
 }
 //FIN BUSCAR EQUIPO
+
+
+

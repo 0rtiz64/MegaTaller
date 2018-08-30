@@ -1,0 +1,68 @@
+/****************************************************************************
+ *
+ * Drawing with Canvas Demo
+ * Developed by Jorge IvÃ¡n Meza MartÃ­nez - http://jorgeivanmeza.com/
+ *
+ * See the "functions.js" file for more information.
+ *
+ ***************************************************************************/
+
+body
+{
+    background-color: #CFD7FF;
+    text-align: center;
+}
+
+header
+{
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+footer
+{
+    font-size: 12px;
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+
+#toolbar
+{
+    display: table;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+#toolbar button
+{
+    float: left;
+    font-size: 15px;
+}
+
+#toolbar button#yellow
+{
+    color: yellow;
+    font-weight: bold;
+}
+
+#toolbar button#blue
+{
+    color: blue;
+    font-weight: bold;
+}
+
+#toolbar button#red
+{
+    color: red;
+    font-weight: bold;
+}
+
+#myCanvas
+{
+    width: 300px;
+    height: 300px;
+    border: 1px solid #000000;
+    box-shadow: 6px 6px 3px #888888;
+}
