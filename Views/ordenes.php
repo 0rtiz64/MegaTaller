@@ -356,7 +356,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
     <div class="form-group col-md-12">
         <label>BUSCAR ORDEN POR CLIENTE</label>
     </div>
-    <div class="col-md-6" id="divSelectClienteOrden">
+    <div class="col-md-12" id="divSelectClienteOrden">
         <select id="selectClientesOrden" class="form-control">
             <option value="">CLIENTE</option>
             <?php
@@ -368,9 +368,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
         </select>
     </div>
 
-    <div class="col-md-6">
-        <input type="text" class="form-control" placeholder="LEER ETIQUETA DE EQUIPO" id="inputLeerEtiquetaEquipo">
-    </div>
+
     <form >
         <input type="submit" class="btn btn-success collapse" onclick="buscarEquipo();">
     </form>
@@ -378,14 +376,8 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
 
 
                             <div class="table-responsive" id="tableOrdenesServicio"></div>
-                            <div id="toolbar">
-                                <button id="yellow">Yellow</button>
-                                <button id="blue">Blue</button>
-                                <button id="red">Red</button>
-                                <button id="reset">Reset</button>
-                            </div>
 
-                            <canvas id="myCanvas" width="300" height="300">(Your browser doesn't support canvas)</canvas>
+
                         </div>
                     </div>
                 </div>
@@ -404,6 +396,12 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                            <div class="col-md-12">
                                <form class="form-horizontal">
                                    <div class="row form-group">
+
+                                       <div class="form-group col-md-12" id="divLeerEtiquetaEquipo">
+                                           <input  type="text" class="form-control" id="leerEtiqueta" placeholder="LEER ETIQUETA DE EQUIPO">
+                                           <input type="hidden"  class="form-control" id="idCorrelativoHidden">
+                                           <input type="hidden"  class="form-control" id="idOrdenHidden">
+                                       </div>
 
                                    <div class="form-group col-md-4" id="divClientes">
                                        <div class="input-group">
@@ -525,8 +523,8 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
-                            <button type="button" class="btn btn-info"  onclick="imprimirEtiquetasOrden();">IMPRIMIR ETIQUETAS</button>
-                            <button type="button" class="btn btn-primary" onclick="confirmarOrden()">CONFIRMAR ORDEN</button>
+                            <button type="button" class="btn btn-info collapse"  id="btnImprimirEtiquetas" onclick="imprimirEtiquetas();">IMPRIMIR ETIQUETAS</button>
+                            <button type="button" class="btn btn-primary" id="btnConfirmarOrden" onclick="confirmarOrden()">CONFIRMAR ORDEN</button>
                         </div>
                     </div>
                 </div>
@@ -562,7 +560,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                    </select>
                                </div>
                               <div class="form-group">
-                                  <input type="text" class="form-control" placeholder="DIRECCION" id="direccionNuevoCliente" style="text-transform: uppercase">
+                                  <input type="number" min="0" class="form-control" placeholder="RTN" id="rtnNuevoCliente" style="text-transform: uppercase">
                               </div>
                            </div>
                         </div>
@@ -671,7 +669,9 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
     </div>
 
     <!-- Jquery JS-->
+        <script type="text/javascript" src="../ZebraBrowserPrint/sample/js/jquery-1.11.1.min.js"></script>
     <script src="../vendor/jquery-3.2.1.min.js"></script>
+
     <!-- Bootstrap JS-->
     <script src="../vendor/bootstrap-4.1/popper.min.js"></script>
     <script src="../vendor/bootstrap-4.1/bootstrap.min.js"></script>
@@ -698,50 +698,12 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
     <script src="../vendor/alertify/alertify.js"></script>
 
 
-    <!-- Main JS-->
-    <script>
 
 
-        function cerrar()
-        {
-            $.ajax({
-                url:'../Model/ingreso.php',
-                type:'POST',
-                data:"boton=cerrar"
-            }).done(function(resp){
-                location.href = '/megataller/index.php';
-            });
-        }
 
 
-        function notificaciones() {
-            var idUsuario = $('#idUsuario').val();
-            var url ='../Model/notificaciones.php';
-            $.ajax({
-                url:url,
-                method :"POST",
-                data:{idUsuario:idUsuario},
-                success: function (datos) {
-                    $('#mostrarNotificaciones').html(datos);
-
-                    return false;
-
-
-                }
-            });
-
-            return false;
-        }
-
-
-        function historialEquipo() {
-            var serie1= $('#inputBuscarHistorial').val();
-            var serie =serie1.toUpperCase();
-            alert("RECUERDA AGREGAR FUNCION BUSCAR HISTORIAL EN TODAS LAS VIEWS");
-        }
-    </script>
-
-
+        <script src="../js/main.js"></script>
+        <script src="../Controllers/ordenes.js"></script>
 
         <script type="text/javascript" src="../ZebraBrowserPrint/sample/js/BrowserPrint-1.0.4.min.js"></script>
         <script type="text/javascript" src="../ZebraBrowserPrint/sample/js/etiquetaOrdenServicio.js"></script>
@@ -761,11 +723,49 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
 
         <script type="text/javascript">
             $(document).ready(setup_web_print);
+
+
+
+
+            function cerrar()
+            {
+                $.ajax({
+                    url:'../Model/ingreso.php',
+                    type:'POST',
+                    data:"boton=cerrar"
+                }).done(function(resp){
+                    location.href = '/megataller/index.php';
+                });
+            }
+
+
+            function notificaciones() {
+                var idUsuario = $('#idUsuario').val();
+                var url ='../Model/notificaciones.php';
+                $.ajax({
+                    url:url,
+                    method :"POST",
+                    data:{idUsuario:idUsuario},
+                    success: function (datos) {
+                        $('#mostrarNotificaciones').html(datos);
+
+                        return false;
+
+
+                    }
+                });
+
+                return false;
+            }
+
+
+            function historialEquipo() {
+                var serie1= $('#inputBuscarHistorial').val();
+                var serie =serie1.toUpperCase();
+                alert("RECUERDA AGREGAR FUNCION BUSCAR HISTORIAL EN TODAS LAS VIEWS");
+            }
         </script>
 
-        <script src="../js/main.js"></script>
-        <script src="../Controllers/ordenes.js"></script>
-        <script src="../test/functions.js"></script>
     </body>
 
     </html>

@@ -97,6 +97,8 @@ window.onload = function() {
     // Set the Reset button behaviour
 
     document.getElementById("reset").onclick = clearAll;
+   document.getElementById("guardar").onclick = guardarFirma;
+   document.getElementById("pdf").onclick = abrirEnPestanaOrden;
 
     // Set the canvas' mouse click behaviour
 
@@ -315,3 +317,54 @@ function hideAddressBar()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+function guardarFirma (){
+    var idOrden = $('#idOrden').val();
+    var canvas = $('#myCanvas')[0];
+    var tmp = canvas.toDataURL();
+
+
+
+var url =  '../Model/guardarFirma.php';
+
+
+        $.ajax({
+            type:'POST',
+            url:url,
+            data:{
+                img: tmp,idOrden:idOrden
+            },
+            success: function(respuesta){
+               if(respuesta ==1){
+                   alertify.success("FIRMA GUARDADA");
+                   clearAll();
+
+                   $('#guardar').hide(200);
+                   $('#reset').hide(200);
+                   $('#pdf').show(200);
+
+
+               }else{
+                   alertify.error("ERROR, FIRMA NO GUARDADA");
+                   clearAll();
+               }
+                return false;
+
+
+            }
+        });
+
+    return false;
+
+}
+
+
+
+function abrirEnPestanaOrden() {
+window.close();
+    var id = $('#idOrden').val();
+    var url ='../pdf/pdfOrdenServicio.php?id='+id;
+    var a = document.createElement("a");
+    a.target = "_blank";
+    a.href = url;
+    a.click();
+}

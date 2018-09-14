@@ -14,23 +14,26 @@ var format_start = "^XA^LL200^FO80,50^A0N36,36^FD";
 var format_end = "^FS^XZ";
 var default_mode = true;
 
-var op1 = " \"\\n\" +\n" +
-    "    \"^XA\\n\" +\n" +
-    "    \"^MMT\\n\" +\n" +
-    "    \"^PW406\\n\" +\n" +
-    "    \"^LL0203\\n\" +\n" +
-    "    \"^LS0\\n\" +\n" +
-    "    \"^FO64,128^GFA,03072,03072,00032,:Z64:\\n\" +\n" +
-    "    \"eJzt1LFu1EAQANBZrcSmOMVINCmiOJ+Q8gp0ayoaJH4AxPEHR+fC0jq6ggYJSgokzB9EoqEIsi2E7hcokFgrP7ARBY6YeDL2JpcgxXZPbq456Wl2Z8a7C7CJTQxHNPC7AzHUftSfFuSUDS0bELkhD8e9HnJ95VKs0PymHfEN9mCmnCS3EBYMEXo/fNuYE/Yl+8MA2et/vPz+83n16xnnv4BEk/JORE3UujhMt2FfTuQSApjqfJkffREZ5JQ34L2YwIJdgnoXJ2EK7f4CNWpY58/lduvkYlWAqx9ZibrWaecl58+VomuPX7aO3qHq8lUjgUuPpeX8U59fdG66/dU99tKaZUXu1alVbf6lv244nwsAWXk/O7MBzmJtW46qFUbzx/KJjMRJ0fnfc/sUk8S46Lp/+UYCfE5BfsqP8q9ZiNMd7W70Lz6w/ylAcv3mo9U43dW1n39Xv3jPTmnn1PrB1pV3/Ysf7CbdavunwBo8mGi8MT+oW4c9HoprAs7fB58vynKX9wf34D67Jh5SomyIIvUO1PXPqyLMQDfsKNll6usHs0LeP1oQRrMo7M6H5PmoQt92QP03geBYZTrrP54Kucai3yUGbtjDy/Nxewg+nzTm/Qyw9p6bz/ejGbr/JqfjofXX96sn9Mj9Hrv/Y+/H2PvDbv2/zft/twewif83LgDmxDbJ:DC7D\\n\" +\n" +
-    "    \"^BY4,3,53^FT358,22^BCI,,N,N\\n\" +\n" +
-    "    \"^FD>:";
+var op1 = "\n" +
+    "^XA\n" +
+    "^MMT\n" +
+    "^PW406\n" +
+    "^LL0203\n" +
+    "^LS0\n" +
+    "^FT238,52^A0I,31,31^FH\\^FD";
 
-var op2 ="^FS\\n\" +\n" +
-    "    \"^FT361,106^A0I,28,28^FH\\\\^FD";
 
-var op3="^FS\n" +
+var op2 ="^FS\n" +
+"^FT289,17^A0I,31,31^FH\\^FD";
+
+var op3 ="^FS\n" +
+"^FT335,18^A0I,31,31^FH\\^FDSN:^FS\n" +
+"^FT368,172^A0I,25,24^FH\\^FDMEGACENTER -TEL: 2566-0426^FS\n" +
+"^BY4,3,66^FT335,86^BCI,,N,N\n" +
+"^FD>:";
+
+var op4 ="^FS\n" +
 "^PQ1,0,1,Y^XZ";
-
 
 var miZpl = "\n" +
     "^XA\n" +
@@ -38,13 +41,13 @@ var miZpl = "\n" +
     "^PW406\n" +
     "^LL0203\n" +
     "^LS0\n" +
-    "^FO64,128^GFA,03072,03072,00032,:Z64:\n" +
-    "eJzt1LFu1EAQANBZrcSmOMVINCmiOJ+Q8gp0ayoaJH4AxPEHR+fC0jq6ggYJSgokzB9EoqEIsi2E7hcokFgrP7ARBY6YeDL2JpcgxXZPbq456Wl2Z8a7C7CJTQxHNPC7AzHUftSfFuSUDS0bELkhD8e9HnJ95VKs0PymHfEN9mCmnCS3EBYMEXo/fNuYE/Yl+8MA2et/vPz+83n16xnnv4BEk/JORE3UujhMt2FfTuQSApjqfJkffREZ5JQ34L2YwIJdgnoXJ2EK7f4CNWpY58/lduvkYlWAqx9ZibrWaecl58+VomuPX7aO3qHq8lUjgUuPpeX8U59fdG66/dU99tKaZUXu1alVbf6lv244nwsAWXk/O7MBzmJtW46qFUbzx/KJjMRJ0fnfc/sUk8S46Lp/+UYCfE5BfsqP8q9ZiNMd7W70Lz6w/ylAcv3mo9U43dW1n39Xv3jPTmnn1PrB1pV3/Ysf7CbdavunwBo8mGi8MT+oW4c9HoprAs7fB58vynKX9wf34D67Jh5SomyIIvUO1PXPqyLMQDfsKNll6usHs0LeP1oQRrMo7M6H5PmoQt92QP03geBYZTrrP54Kucai3yUGbtjDy/Nxewg+nzTm/Qyw9p6bz/ejGbr/JqfjofXX96sn9Mj9Hrv/Y+/H2PvDbv2/zft/twewif83LgDmxDbJ:DC7D\n" +
-    "^BY4,3,53^FT358,22^BCI,,N,N\n" +
-    "^FD>:100^FS\n" +
-    "^FT361,106^A0I,28,28^FH\\^FDXXXJ145781416^FS\n" +
+    "^FT238,52^A0I,31,31^FH\\^FD11^FS\n" +
+    "^FT289,17^A0I,31,31^FH\\^FDXXXJ145781416^FS\n" +
+    "^FT335,18^A0I,31,31^FH\\^FDSN:^FS\n" +
+    "^FT368,172^A0I,25,24^FH\\^FDMEGACENTER -TEL: 2566-0426^FS\n" +
+    "^BY4,3,66^FT335,86^BCI,,N,N\n" +
+    "^FD>:11^FS\n" +
     "^PQ1,0,1,Y^XZ";
-
 
 function setup_web_print()
 {
@@ -124,24 +127,20 @@ function showBrowserPrintNotFound()
 
 
 function imprimirEtiquetas() {
-    var serie ="";
-    var url ="../Model/trabajarArray.php";
+   var corr = $('#idCorrelativoHidden').val();
 
-    $("input[name='serieA[]']").each(function () {
-        serie=serie+","+$(this).val();
-    });
+    var url ="../Model/itemDeOrden.php";
+
+
 
     $.ajax({
         type:'POST',
         url:url,
         data:{
-            phpSerie: serie
+            phpCorrelativoOrden: corr
         },
-        success: function(series){
-                for (var i = 0; i<series.length; i++){
-                    console.log(series[i]);
-                   imprimirEtiquetasOrden(series[i]);
-                }
+        success: function(response){
+            imprimirEtiquetasOrden(response);
             return false;
         }
     });
@@ -150,15 +149,27 @@ function imprimirEtiquetas() {
 
 
 
-function imprimirEtiquetasOrden()
+function imprimirEtiquetasOrden(response)
 {
 
     showLoading("Printing...");
     checkPrinterStatus( function (text){
         if (text == "Ready to Print")
         {
-
-            selected_printer.send(miZpl, printComplete, printerError);
+            var jsonData = JSON.parse(response);
+            var contador =0;
+            var contadorB = 0;
+            for( var i=0; i< Object.keys(jsonData).length; i++){
+                for (var b = 0; b<(Object.keys(jsonData).length); b++){
+                    var correlativoItem1 = jsonData[i][0];
+                    var serie = jsonData[i][2];
+                    var correlativoItem = parseInt(correlativoItem1);
+                }
+                console.log(correlativoItem);
+               selected_printer.send(op1+correlativoItem+op2+serie+op3+correlativoItem+op4);
+                //selected_printer.send(miZpl);
+            }
+printComplete();
 
         }
         else

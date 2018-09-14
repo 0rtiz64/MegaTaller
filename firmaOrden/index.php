@@ -1,3 +1,14 @@
+<?php
+include '../funciones/enlace.php';
+$idOrden =$_GET["id"];
+
+$query = mysqli_query($enlace,"select ordenesservicio.correlativo,clientes.nombre from ordenesservicio
+INNER JOIN clientes ON ordenesservicio.idCliente = clientes.idCliente WHERE idOrden = $idOrden");
+$datos = mysqli_fetch_array($query,MYSQLI_ASSOC);
+$correlativo= $datos["correlativo"];
+$cliente= $datos["nombre"];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,6 +29,10 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+    <!--ALERTIFY INICIO-->
+    <link rel="stylesheet" href="../vendor/alertify/css/alertify.css">
+    <link rel="stylesheet" href="../vendor/alertify/css/themes/bootstrap.css">
+    <!--ALERTIFY FIN-->
 </head>
 <body>
 	
@@ -26,7 +41,7 @@
 		<!-- Coutdown -->
 		<div class="flex-c-m bg-img1 size2 where1 overlay1 where2 respon2" style="background-image: url('images/bg01.jpg');">
 			<div class="wsize2 flex-w flex-c-m cd100 js-tilt">
-				<div class="flex-col-c-m size6 bor2 m-l-10 m-r-10 m-t-15">
+				<div class="flex-col-c-m size6 bor2 m-l-10 m-r-10 m-t-15" id="guardar">
 
                     <span class="l2-txt1 p-b-9 ">
                         <i class="fa fa-check-circle" style="color:#59BD60;"></i>
@@ -41,6 +56,18 @@
                     </span>
                     <span class="s2-txt4">BORRAR FIRMA</span>
 				</div>
+
+                <div id="pdf" class="collapse">
+                    <div class="flex-col-c-m size6 bor2 m-l-10 m-r-10 m-t-15">
+
+                    <span class="l2-txt1 p-b-9 ">
+                        <i class="fa fa-file-text" style="color:#cb0000;"></i>
+                    </span>
+                        <span class="s2-txt4">EXPORTAR PDF</span>
+
+                    </div>
+                </div>
+
 
 
 
@@ -62,7 +89,8 @@
 
             <div class="form-group" style="margin-left: 5%">
                 <h1 class="m1-txt1 p-b-36">
-                    ORDEN DE SERVICIO <span class="m1-txt2">18010000</span>, WALMART
+                    <input type="hidden" value="<?php  echo $idOrden  ?>" id="idOrden">
+                    ORDEN DE SERVICIO <span class="m1-txt2"><?php  echo $correlativo  ?></span>, <?php echo $cliente ?>
                 </h1>
 
                 <form class="contact100-form validate-form">
@@ -73,6 +101,8 @@
                         <button id="red">Red</button>
                         <button id="reset2">Reset</button>
                     </div>
+
+
                     <canvas id="myCanvas" width="200"></canvas>
                 </form>
 
@@ -126,6 +156,6 @@
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
 	<script src="js/functions.js"></script>
-
+    <script src="../vendor/alertify/alertify.js"></script>
 </body>
 </html>

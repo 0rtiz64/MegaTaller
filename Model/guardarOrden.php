@@ -70,9 +70,15 @@ if($datosTomarIdEquipo["pn"]==""){
         $idEquipo = $datosTomarIdEquipo["idEquipo"];
     }
 
+$correlativoDetalle = $correlativoNuevo.$i;
+    if($incluye[$i] ==""){
+        $incluye[$i]="NINGUNO";
+    }else{
+        $incluye[$i] = $incluye[$i];
+    }
 
-    $queryInsertarEquipoEnOrden= mysqli_query($enlace,"INSERT INTO detalleordenesservicio (idOrdenServicio,idEquipo,incluye,estado,falla) VALUES
- (".$idOrdenServicio.",".$idEquipo.",'".$incluye[$i]."',1,'".$falla[$i]."')");
+    $queryInsertarEquipoEnOrden= mysqli_query($enlace,"INSERT INTO detalleordenesservicio (idOrdenServicio,idEquipo,incluye,estado,falla,correlativoDetalle) VALUES
+ (".$idOrdenServicio.",".$idEquipo.",'".$incluye[$i]."',1,'".$falla[$i]."',".$correlativoDetalle.")");
     $i++;
 }
 //FIN GUARDAR EQUIPOS EN ORDEN
@@ -86,6 +92,8 @@ $divOrdenes = '<span class="badge badge-warning" >'.$cantidad.' </span>';
 
 $datos = array(
     0 => $divOrdenes,
+    1 => $correlativoNuevo,
+    2 => $idOrdenServicio,
 );
 echo json_encode($datos);
 

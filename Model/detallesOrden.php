@@ -22,7 +22,7 @@ $correlativo= '<h4 align="right">'.$datosClienteOrden["correlativo"].'</h4>';
 
 
 
-$queryTomarEquipos = mysqli_query($enlace,"SELECT clientes.nombre,ordenesservicio.correlativo,modelos.descripcion,equipos.serie,detalleordenesservicio.estado,detalleordenesservicio.fechaEntrega from ordenesservicio 
+$queryTomarEquipos = mysqli_query($enlace,"SELECT clientes.nombre,ordenesservicio.correlativo,modelos.descripcion,equipos.serie,detalleordenesservicio.estado,detalleordenesservicio.fechaEntrega,detalleordenesservicio.correlativoDetalle from ordenesservicio 
 INNER JOIN detalleordenesservicio on ordenesservicio.idOrden = detalleordenesservicio.idOrdenServicio
 INNER JOIN clientes on ordenesservicio.idCliente = clientes.idCliente
 INNER JOIN  equipos on detalleordenesservicio.idEquipo = equipos.idEquipo
@@ -36,8 +36,8 @@ $tablaModal ='
                                                 <td style="color: #ffffff;"><strong>EQUIPO</strong></td>
                                                 <td style="color: #ffffff;"><strong>SERIE</strong></td>
                                                 <td style="color: #ffffff;"><strong>ESTADO</strong></td>
-                                                <td style="color: #ffffff;"><strong>FECHA ENTREGA</strong></td>
                                                 <td style="color: #ffffff;"><strong>COMPROBANTE</strong></td>
+                                                <td style="color: #ffffff;"><strong>ITEM</strong></td>
                                             </tr>
                                             </thead>
                                             <tbody>';
@@ -136,12 +136,13 @@ while($datosEquiposEnOrden = mysqli_fetch_array($queryTomarEquipos,MYSQLI_ASSOC)
                                                 <td><strong>'.$datosEquiposEnOrden["descripcion"].'</strong></td>
                                                 <td><strong>'.$datosEquiposEnOrden["serie"].'</strong></td>
                                                 <td '.$clase.'><strong>'.$estado.'</strong></td>
-                                                <td style="font-size: small"><strong>'.$fCompleta.'</strong></td>
                                                 <td>
                                                     <strong>
                                                       '.$botonOrden.'
                                                     </strong>
                                                 </td>
+                                                
+                                                 <td style="font-size: small"><strong>'.$datosEquiposEnOrden["correlativoDetalle"].'</strong></td>
 
                                             </tr>
 ';

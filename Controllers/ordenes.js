@@ -76,10 +76,10 @@ function modalDetalleOrden(idOrdenServicio){
 function guardarClienteNuevo() {
     var cliente1 = $('#nombreNuevoCliente').val();
     var idVendedor = document.getElementById('nuevoClienteVendedor').value;
-    var direccion1 = $('#direccionNuevoCliente').val();
+    var rtn = $('#rtnNuevoCliente').val();
 
     var cliente =cliente1.toUpperCase();
-    var direccion =direccion1.trim().toUpperCase();
+
 
     var url = '../Model/ordenesGuardarCliente.php';
 
@@ -107,7 +107,7 @@ function guardarClienteNuevo() {
         data:{
             phpNombreCliente: cliente,
             phpidVendedor: idVendedor,
-            phpDireccion: direccion
+            phpRtn: rtn
         },
         success: function(respuesta){
 var datos= eval(respuesta);
@@ -115,11 +115,11 @@ var datos= eval(respuesta);
                 alertify.error("CLIENTE DUPLICADO");
                 $('#nombreNuevoCliente').val("");
                 $('#nuevoClienteVendedor').val("");
-                $('#direccionNuevoCliente').val("");
+                $('#rtnNuevoCliente').val("");
             }else{
                 $('#nombreNuevoCliente').val("");
                 $('#nuevoClienteVendedor').val("");
-                $('#direccionNuevoCliente').val("");
+                $('#rtnNuevoCliente').val("");
                 alertify.success("CLIENTE GUARDADO");
                 $('#divClientes').html(datos[0]);
                 $('#divSelectClienteOrden').html(datos[1]);
@@ -450,8 +450,10 @@ if(cliente.trim().length==""){
         success: function(callBack){
             var datos = eval(callBack);
              $('#contadorOrdenes').html(datos[0]);
+            $('#idCorrelativoHidden').val(datos[1]);
+            $('#idOrdenHidden').val(datos[2]);
             alertify.success("ORDEN REGISTRADA CORRECTAMENTE");
-            $('#largeModalOrdenesServicio').modal('hide');
+
             $('#clienteNuevaOrden').val("");
             $('#nombreContacto').val("");
             $('#telefonoContacto').val("");
@@ -461,10 +463,12 @@ if(cliente.trim().length==""){
             $('#inputFallaEquipo').val("");
             $('#inputNumeroParte').val("");
             $('#inputIncluye').val("");
-
+            $('#btnConfirmarOrden').hide(200);
+            $('#btnImprimirEtiquetas').show(200);
             for(var i = 0; i <equiposEnOrden.length; i++){
                 removerTodos(equiposEnOrden[i]);
             }
+            abrirEnPestana();
             equiposEnOrden=[];
             return false;
         }
@@ -472,6 +476,12 @@ if(cliente.trim().length==""){
 
 }
 //FIN CONFIRMAR ORDEN
+
+
+$("#largeModalOrdenesServicio").on('hidden.bs.modal', function () {
+    $('#btnImprimirEtiquetas').hide(200);
+    $('#btnConfirmarOrden').show(200);
+});
 
 
 $('#selectClientesOrden').change(function(){
@@ -526,5 +536,15 @@ function buscarEquipo(){
 }
 //FIN BUSCAR EQUIPO
 
+
+function abrirEnPestana() {
+
+    var id = $('#idOrdenHidden').val();
+    var url ='../firmaOrden/index.php?id='+id;
+    var a = document.createElement("a");
+    a.target = "_blank";
+    a.href = url;
+    a.click();
+}
 
 

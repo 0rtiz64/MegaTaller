@@ -9,9 +9,11 @@ include '../funciones/enlace.php';
 
 $nombreCliente = $_POST['phpNombreCliente'];
 $idVendedor = $_POST['phpidVendedor'];
-$direccion = $_POST['phpDireccion'];
+$rtn1 = $_POST['phpRtn'];
 $fechaentrada = date('Y-m-d  h:i:s');
-
+if($rtn1== ""){
+    $rtn=0;
+}
 
 $queryConfirmar = mysqli_num_rows(mysqli_query($enlace,"SELECT * from clientes where nombre = '".$nombreCliente."'"));
 
@@ -22,8 +24,8 @@ if($queryConfirmar>0){
     );
     echo json_encode($datos);
 }else{
-$queryGuardar = mysqli_query($enlace,"insert into clientes(idVendedor,nombre,direccion,fechaRegistro,estado) values 
-	($idVendedor,'".$nombreCliente."','".$direccion."','".$fechaentrada."',1)");
+$queryGuardar = mysqli_query($enlace,"insert into clientes(idVendedor,nombre,rtn,fechaRegistro,estado) values 
+	($idVendedor,'".$nombreCliente."',$rtn,'".$fechaentrada."',1)");
 $queryConsultarClientes = mysqli_query($enlace,"SELECT * from clientes WHERE estado = 1 GROUP BY nombre ASC");
 
 $selectClientesModal= '
